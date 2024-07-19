@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools", "ListenTools\ListenTools.csproj", "{1F70A2D2-455F-44DC-B8F8-C72D59359F16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools.Media", "ListenTools.Media\ListenTools.Media.csproj", "{44389FF3-AB82-422E-BCE1-ED58DD5A7747}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools.Utils", "ListenTools.Utils\ListenTools.Utils.csproj", "{49B25DB8-B9AA-4F03-A4A5-48A81E687980}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F70A2D2-455F-44DC-B8F8-C72D59359F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F70A2D2-455F-44DC-B8F8-C72D59359F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F70A2D2-455F-44DC-B8F8-C72D59359F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F70A2D2-455F-44DC-B8F8-C72D59359F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{44389FF3-AB82-422E-BCE1-ED58DD5A7747}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{44389FF3-AB82-422E-BCE1-ED58DD5A7747}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{44389FF3-AB82-422E-BCE1-ED58DD5A7747}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{44389FF3-AB82-422E-BCE1-ED58DD5A7747}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

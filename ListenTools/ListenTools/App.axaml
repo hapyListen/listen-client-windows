@@ -1,0 +1,24 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:ListenTools.ViewModels"
+             x:Class="ListenTools.App"
+             RequestedThemeVariant="Default">
+             <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+  
+             <Application.Resources>
+                 <ResourceDictionary>
+                     <vm:ViewModelLocator x:Key="VmLocator" />
+                     <FontFamily x:Key="HarmonyOsFont">avares://Resources/Fonts/HarmonyOS.woff2</FontFamily>
+                     <ResourceDictionary.MergedDictionaries>
+                         <ResourceInclude Source="/Resources/Geometries.axaml" />
+                         <ResourceInclude Source="/Resources/Styles/DataTemplates.axaml" />
+                     </ResourceDictionary.MergedDictionaries>
+                 </ResourceDictionary>
+             </Application.Resources>
+    
+             <Application.Styles>
+                 <FluentTheme />
+                 <StyleInclude Source="/Resources/Styles/Generic.axaml" />
+                 <StyleInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />
+             </Application.Styles>
+</Application>
