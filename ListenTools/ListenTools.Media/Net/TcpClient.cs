@@ -237,7 +237,7 @@ internal class TcpClient
                 this.OnError(ex);
             }
 
-            if (!completedAsync)
+            if (!completedAsync)git
                 ThreadPool.QueueUserWorkItem(_ => this.SendAsyncCompleted(sender, e));
         }
         else
