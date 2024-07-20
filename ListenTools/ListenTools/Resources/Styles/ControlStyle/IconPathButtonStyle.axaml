@@ -1,0 +1,90 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:ucs="clr-namespace:ListenTools.Controls"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--  Add Styles Here  -->
+    <ControlTheme TargetType="ucs:IconPathButton" x:Key="{x:Type ucs:IconPathButton}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="OverBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}" />
+        <Setter Property="PressBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}" />
+        <Setter Property="OverForeground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
+        <Setter Property="PressForeground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ucs:IconPathButton}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Height="{TemplateBinding Height}"
+                        Padding="{TemplateBinding Padding}"
+                        RenderTransformOrigin=".5,.5"
+                        Width="{TemplateBinding Width}"
+                        x:Name="Bd">
+                        <Border.RenderTransform>
+                            <ScaleTransform ScaleX="1" ScaleY="1" />
+                        </Border.RenderTransform>
+                        <Path
+                            Data="{TemplateBinding IconPath}"
+                            Fill="{TemplateBinding Foreground}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Stretch="{TemplateBinding Stretch}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            x:Name="IconPath" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style Selector="^ /template/ Border">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Duration="0:0:0.2" Property="Background" />
+                    <ThicknessTransition Duration="0:0:0.2" Property="BorderThickness" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="^ /template/ Path">
+            <Setter Property="Transitions">
+                <Transitions>
+                    <BrushTransition Duration="0:0:0.2" Property="Fill" />
+                </Transitions>
+            </Setter>
+        </Style>
+
+        <Style Selector="^:pointerover">
+            <Style Selector="^ /template/ Path">
+                <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OverForeground}" />
+            </Style>
+
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OverBrush}" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:pressed">
+            <Style Selector="^ /template/ Path">
+                <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressForeground}" />
+            </Style>
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressBrush}" />
+                <Setter Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.97" ScaleY="0.97" />
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </Style>
+
+        <Style Selector="^:disabled">
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Opacity" Value=".8" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

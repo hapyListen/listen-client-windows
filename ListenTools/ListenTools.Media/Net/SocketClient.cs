@@ -8,6 +8,8 @@ namespace ListenTools.Media.Net;
 internal class SocketClient
 {
     public event EventHandler<bool> OnConnectionStatusChanged;
+    public string ConnectionId { get; }
+    
     private readonly string _serverIp;
     private readonly int _serverPort;
     private readonly SocketAsyncEventArgsPool _socketAsyncEventArgsPool;
@@ -30,6 +32,8 @@ internal class SocketClient
         _serverPort = port;
         _socketAsyncEventArgsPool = new SocketAsyncEventArgsPool(SocketBufferSize);
         _packetQueue = new PacketQueue(this.SendPacketInternal);
+
+        ConnectionId = Guid.NewGuid().ToString();
     }
 
     /// <summary>

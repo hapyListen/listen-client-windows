@@ -9,8 +9,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Folder Include="Controls\Base\" />
         <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
+        <None Remove="Resources\Images\logo.png" />
+        <AvaloniaResource Include="Resources\Images\logo.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -27,5 +30,9 @@
 
     <ItemGroup>
       <ProjectReference Include="..\ListenTools.Media\ListenTools.Media.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <UpToDateCheckInput Remove="Assets\avalonia-logo.ico" />
     </ItemGroup>
 </Project>

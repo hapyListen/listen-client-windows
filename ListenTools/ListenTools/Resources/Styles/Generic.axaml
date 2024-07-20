@@ -6,7 +6,7 @@
     <Style Selector="TemplatedControl">
         <Setter Property="FontFamily" Value="{StaticResource HarmonyOsFont}" />
     </Style>
-    
+
     <!--  无样式的ListBoxItem  -->
     <Style Selector="ListBoxItem">
         <Setter Property="Background" Value="Transparent" />
@@ -33,4 +33,5 @@
         </Setter>
     </Style>
     <!--  Add Styles Here  -->
+
 </Styles>
