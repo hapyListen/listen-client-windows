@@ -1,5 +1,7 @@
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using FFmpeg.AutoGen;
+using ListenTools.Media.Net;
 
 namespace ListenTools.Media;
 
@@ -10,10 +12,26 @@ public static class Instance
     /// </summary>
     public static void Init()
     {
-        InitFfmpegPath();
+        //InitFfmpegPath();
     }
-    
-    
+
+    public static void TcpClientTest()
+    {
+        // TcpClient client = new TcpClient("127.0.0.1", 11231);
+        // client.OnConnectionStatusChanged += (tcp, status) =>
+        // {
+        //     if (status)
+        //     {
+        //         Debug.WriteLine("Tcp 连接成功");
+        //         tcp.BeginReceive();
+        //     }
+        //     else 
+        //         Debug.WriteLine("Tcp 连接已断开");
+        // };
+        // client.BeginConnect();
+    }
+
+
     private static void InitFfmpegPath()
     {
         string libsPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "libs", "ffmpeg", "bin",

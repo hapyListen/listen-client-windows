@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -6,35 +7,63 @@ namespace ListenTools.Media.Net;
 
 internal class TcpClient
 {
-    /// <summary>
-    /// connection disconnected delegate
-    /// </summary>
-    public delegate void ConnectionStatusChangedHandler(Socket socket, bool status);
-
-    public event ConnectionStatusChangedHandler OnConnectionStatusChanged;
-
+    public event EventHandler<bool> OnConnectionStatusChanged;
     private readonly string _serverIp;
     private readonly int _serverPort;
     private readonly SocketAsyncEventArgsPool _socketAsyncEventArgsPool;
+    private readonly PacketQueue _packetQueue;
     private const int SendTimeout = 5000;
     private const int ReceiveTimeout = 5000;
     private const int ConnectTimeout = 8000;
     private const int SocketBufferSize = 10240;
     private Socket _clientSocket;
-    private MemoryStream? _readStream;
-    private SocketAsyncEventArgs? _saeReceive;
     private SocketAsyncEventArgs? _saeSend;
+    private SocketAsyncEventArgs? _saeReceive;
+    private int _active = 1;
+    private MemoryStream _tsStream = null;
+    private int _isReceiving = 0;
+
+    public bool Active => Thread.VolatileRead(ref this._active) == 1;
 
     public TcpClient(string ip, int port)
     {
         _serverIp = ip;
         _serverPort = port;
         _socketAsyncEventArgsPool = new SocketAsyncEventArgsPool(SocketBufferSize);
+        _packetQueue = new PacketQueue(this.SendPacketInternal);
+    }
+
+    /// <summary>
+    /// 异步发送数据
+    /// </summary>
+    /// <param name="packet"></param>
+    public void BeginSend(Packet packet)
+    {
+        this._packetQueue.TrySend(packet);
+    }
+
+    /// <summary>
+    /// 异步接收数据
+    /// </summary>
+    public void BeginReceive()
+    {
+        if (Interlocked.CompareExchange(ref this._isReceiving, 1, 0) == 0)
+            this.ReceiveInternal();
+    }
+
+    /// <summary>
+    /// 异步断开连接
+    /// </summary>
+    /// <param name="ex"></param>
+    public void BeginDisconnect(Exception ex = null)
+    {
+        if (Interlocked.CompareExchange(ref this._active, 0, 1) == 1)
+            this.DisconnectInternal(ex);
     }
 
     #region Connection
 
-    public void Connect()
+    public void BeginConnect()
     {
         var source = new TaskCompletionSource<Socket>();
         _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -88,10 +117,7 @@ internal class TcpClient
     private void ConnectionCallback(Task<Socket> t)
     {
         if (t.IsFaulted)
-        {
-            Utils.TaskEs.Delay(new Random().Next(500, 1500)).ContinueWith(_ => this.Connect());
             return;
-        }
 
         var socket = t.Result;
         socket.NoDelay = true;
@@ -111,7 +137,7 @@ internal class TcpClient
         this._saeReceive = _socketAsyncEventArgsPool.Acquire();
         this._saeReceive.Completed += this.ReceiveAsyncCompleted;
 
-        OnConnectionStatusChanged?.Invoke(socket, true);
+        OnConnectionStatusChanged?.Invoke(this, true);
     }
 
     #endregion
@@ -121,11 +147,12 @@ internal class TcpClient
     /// <summary>
     /// disconnect
     /// </summary>
-    private void Disconnect(Exception? err = null)
+    /// <param name="reason"></param>
+    private void DisconnectInternal(Exception reason)
     {
-        err ??= new SocketException((int)SocketError.Disconnecting);
         var e = new SocketAsyncEventArgs();
         e.Completed += this.DisconnectAsyncCompleted;
+        e.UserToken = reason;
 
         var completedAsync = true;
         try
@@ -135,9 +162,6 @@ internal class TcpClient
         }
         catch (Exception ex)
         {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"TcpSocket DisConnection : {err.Message}");
-            Console.ResetColor();
             ThreadPool.QueueUserWorkItem(_ => this.DisconnectAsyncCompleted(this, e));
             return;
         }
@@ -151,58 +175,62 @@ internal class TcpClient
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void DisconnectAsyncCompleted(object? sender, SocketAsyncEventArgs e)
+    private void DisconnectAsyncCompleted(object sender, SocketAsyncEventArgs e)
     {
-        //dispose socket
         try
         {
             _clientSocket.Close();
         }
         catch (Exception ex)
         {
-            // ignored
         }
 
+        var reason = e.UserToken as Exception;
         e.Completed -= this.DisconnectAsyncCompleted;
         e.Dispose();
-        OnConnectionStatusChanged?.Invoke(_clientSocket, false);
+
+        this.OnConnectionStatusChanged?.Invoke(this, false);
+        Utils.TaskEx.Delay(new Random().Next(100, 1000)).ContinueWith(_ => this.BeginConnect());
+        this.FreeSendQueue();
     }
 
     #endregion
 
     #region Send
 
-    /// <summary>
-    /// 发送数据
-    /// </summary>
-    /// <param name="data"></param>
-    public void SendData(byte[] data)
-    {
-        SendData(new Packet(data));
-    }
+    private Packet _currSendingPacket;
 
     /// <summary>
     /// internal send packet.
     /// </summary>
-    /// <param name="e"></param>
-    private void SendData(Packet packet)
+    /// <param name="packet"></param>
+    /// <exception cref="ArgumentNullException">packet is null</exception>
+    private void SendPacketInternal(Packet packet)
     {
+        this._currSendingPacket = packet;
+        this.SendPacketInternal(this._saeSend);
+    }
+
+    private void SendPacketInternal(SocketAsyncEventArgs e)
+    {
+        var packet = this._currSendingPacket;
+
         var length = Math.Min(packet.Payload.Length - packet.SentSize, SocketBufferSize);
         var completedAsync = true;
         try
         {
-            Buffer.BlockCopy(packet.Payload, packet.SentSize, _saeSend.Buffer, 0, length);
-            _saeSend.SetBuffer(0, length);
-            completedAsync = _clientSocket.SendAsync(_saeSend);
+            Buffer.BlockCopy(packet.Payload, packet.SentSize, e.Buffer, 0, length);
+            e.SetBuffer(0, length);
+            completedAsync = _clientSocket.SendAsync(e);
         }
-        catch (Exception? ex)
+        catch (Exception ex)
         {
-            this.Disconnect(ex);
+            this.BeginDisconnect(ex);
             this.FreeSend();
         }
 
         if (!completedAsync)
-            ThreadPool.QueueUserWorkItem(_ => this.SendAsyncCompleted(this, _saeSend));
+            ThreadPool.QueueUserWorkItem(_ => this.SendAsyncCompleted(this, e));
     }
 
     /// <summary>
@@ -210,34 +238,34 @@ internal class TcpClient
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void SendAsyncCompleted(object? sender, SocketAsyncEventArgs? e)
+    private void SendAsyncCompleted(object sender, SocketAsyncEventArgs e)
     {
         var packet = this._currSendingPacket;
+
         if (e.SocketError != SocketError.Success)
         {
-            this.Disconnect(new SocketException((int)e.SocketError));
+            this.BeginDisconnect(new SocketException((int)e.SocketError));
             this.FreeSend();
             return;
         }
 
         packet.SentSize += e.BytesTransferred;
+
         if (e.Offset + e.BytesTransferred < e.Count)
         {
             var completedAsync = true;
             try
             {
                 e.SetBuffer(e.Offset + e.BytesTransferred, e.Count - e.BytesTransferred - e.Offset);
-                completedAsync = this._socket.SendAsync(e);
+                completedAsync = _clientSocket.SendAsync(e);
             }
             catch (Exception ex)
             {
                 this.BeginDisconnect(ex);
                 this.FreeSend();
-                this.OnSendCallback(packet, false);
-                this.OnError(ex);
             }
 
-            if (!completedAsync)git
+            if (!completedAsync)
                 ThreadPool.QueueUserWorkItem(_ => this.SendAsyncCompleted(sender, e));
         }
         else
@@ -245,42 +273,29 @@ internal class TcpClient
             if (packet.IsSent())
             {
                 this._currSendingPacket = null;
-                this.OnSendCallback(packet, true);
-                // try send next packet
                 if (!this._packetQueue.TrySendNext()) this.FreeSend();
             }
-            else this.SendPacketInternal(e); //continue send this packet
+            else this.SendPacketInternal(e);
         }
-    }
-
-    /// <summary>
-    /// free for send
-    /// </summary>
-    private void FreeSend()
-    {
-        this._saeSend.Completed -= this.SendAsyncCompleted;
-        _socketAsyncEventArgsPool.Release(this._saeSend);
-        this._saeSend = null;
     }
 
     #endregion
 
     #region Receive
 
-    /// <summary>
-    /// receive
-    /// </summary>
+    private int ccc = 0;
+
     private void ReceiveInternal()
     {
+        Debug.WriteLine($"开始接收:{++ccc}");
         bool completed = true;
         try
         {
-            var socketAsyncEventArgs = this._saeReceive;
-            if (socketAsyncEventArgs != null) completed = _clientSocket.ReceiveAsync(socketAsyncEventArgs);
+            completed = _clientSocket.ReceiveAsync(this._saeReceive);
         }
         catch (Exception ex)
         {
-            this.Disconnect(ex);
+            this.BeginDisconnect(ex);
             this.FreeReceive();
         }
 
@@ -288,29 +303,24 @@ internal class TcpClient
             ThreadPool.QueueUserWorkItem(_ => this.ReceiveAsyncCompleted(this, this._saeReceive));
     }
 
-    /// <summary>
-    /// async receive callback
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ReceiveAsyncCompleted(object? sender, SocketAsyncEventArgs? e)
+    private void ReceiveAsyncCompleted(object sender, SocketAsyncEventArgs e)
     {
         if (e.SocketError != SocketError.Success)
         {
-            this.Disconnect(new SocketException((int)e.SocketError));
+            this.BeginDisconnect(new SocketException((int)e.SocketError));
             this.FreeReceive();
             return;
         }
 
         if (e.BytesTransferred < 1)
         {
-            this.Disconnect();
+            this.BeginDisconnect();
             this.FreeReceive();
             return;
         }
 
         ArraySegment<byte> buffer;
-        var ts = this._readStream;
+        var ts = this._tsStream;
         if (ts == null || ts.Length == 0)
             buffer = new ArraySegment<byte>(e.Buffer, 0, e.BytesTransferred);
         else
@@ -320,22 +330,19 @@ internal class TcpClient
         }
 
         this.OnMessageReceived(new MessageReceivedEventArgs(buffer, this.MessageProcessCallback));
+        Debug.WriteLine($"接收完毕：{--ccc}");
     }
 
-    /// <summary>
-    /// message process callback
-    /// </summary>
-    /// <param name="payload"></param>
-    /// <param name="readlength"></param>
     private void MessageProcessCallback(ArraySegment<byte> payload, int readlength)
     {
         if (readlength < 0 || readlength > payload.Count)
             throw new ArgumentOutOfRangeException("readlength",
                 "readlength less than 0 or greater than payload.Count.");
-        var ts = this._readStream;
+
+        var ts = this._tsStream;
         if (readlength == 0)
         {
-            if (ts == null) this._readStream = ts = new MemoryStream(SocketBufferSize);
+            if (ts == null) this._tsStream = ts = new MemoryStream(SocketBufferSize);
             else ts.SetLength(0);
 
             ts.Write(payload.Array, payload.Offset, payload.Count);
@@ -355,23 +362,55 @@ internal class TcpClient
             new ArraySegment<byte>(payload.Array, payload.Offset + readlength, payload.Count - readlength),
             this.MessageProcessCallback));
     }
-    
-    
+
+    private void OnMessageReceived(MessageReceivedEventArgs e)
+    {
+        //process message
+        int readlength = e.Buffer.Count;
+
+        Debug.WriteLine($"接受消息长度：{readlength}");
+        //continue receiveing..
+        e.SetReadlength(readlength);
+    }
+
+    #endregion
+
+    #region Free
+
     /// <summary>
-    /// free to receive
+    /// free send queue
+    /// </summary>
+    private void FreeSendQueue()
+    {
+        var result = this._packetQueue.Close();
+        if (result.BeforeState == PacketQueue.CLOSED) return;
+        if (result.BeforeState == PacketQueue.IDLE) this.FreeSend();
+    }
+
+    /// <summary>
+    /// free for send.
+    /// </summary>
+    private void FreeSend()
+    {
+        this._currSendingPacket = null;
+        this._saeSend.Completed -= this.SendAsyncCompleted;
+        this._socketAsyncEventArgsPool.Release(this._saeSend);
+        this._saeSend = null;
+    }
+
+    /// <summary>
+    /// free fo receive.
     /// </summary>
     private void FreeReceive()
     {
-        if (_saeReceive != null)
+        this._saeReceive.Completed -= this.ReceiveAsyncCompleted;
+        this._socketAsyncEventArgsPool.Release(this._saeReceive);
+        this._saeReceive = null;
+        if (this._tsStream != null)
         {
-            _saeReceive.Completed -= this.ReceiveAsyncCompleted;
-            _socketAsyncEventArgsPool.Release(this._saeReceive);
+            this._tsStream.Close();
+            this._tsStream = null;
         }
-
-        _saeReceive = null;
-        _readStream?.Close();
-        _readStream?.Dispose();
-        _readStream = null;
     }
 
     #endregion
