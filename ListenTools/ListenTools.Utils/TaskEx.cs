@@ -1,6 +1,6 @@
 ﻿namespace ListenTools.Utils;
 
-public static class TaskEs
+public static class TaskEx
 { 
     /// <summary>
     /// 延迟执行任务

@@ -5,16 +5,15 @@ using System.Runtime.InteropServices;
 
 namespace ListenTools.Media.Net;
 
-internal class TcpClient
+internal class SocketClient
 {
     public event EventHandler<bool> OnConnectionStatusChanged;
     private readonly string _serverIp;
     private readonly int _serverPort;
     private readonly SocketAsyncEventArgsPool _socketAsyncEventArgsPool;
     private readonly PacketQueue _packetQueue;
-    private const int SendTimeout = 5000;
-    private const int ReceiveTimeout = 5000;
-    private const int ConnectTimeout = 8000;
+    private const int SendTimeout = 3000;
+    private const int ReceiveTimeout = 3000;
     private const int SocketBufferSize = 10240;
     private Socket _clientSocket;
     private SocketAsyncEventArgs? _saeSend;
@@ -25,7 +24,7 @@ internal class TcpClient
 
     public bool Active => Thread.VolatileRead(ref this._active) == 1;
 
-    public TcpClient(string ip, int port)
+    public SocketClient(string ip, int port)
     {
         _serverIp = ip;
         _serverPort = port;
@@ -117,7 +116,10 @@ internal class TcpClient
     private void ConnectionCallback(Task<Socket> t)
     {
         if (t.IsFaulted)
+        {
+            OnConnectionStatusChanged?.Invoke(this, false);
             return;
+        }
 
         var socket = t.Result;
         socket.NoDelay = true;
