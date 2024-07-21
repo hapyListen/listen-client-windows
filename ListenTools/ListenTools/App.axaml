@@ -11,6 +11,7 @@
             <vm:ViewModelLocator x:Key="VmLocator" />
             <FontFamily x:Key="HarmonyOsFont">avares://Resources/Fonts/HarmonyOS.woff2</FontFamily>
             <ResourceDictionary.MergedDictionaries>
+                <ResourceInclude Source="/Resources/Themes/LightTheme.axaml" />
                 <ResourceInclude Source="/Resources/Geometries.axaml" />
                 <ResourceInclude Source="/Resources/Styles/DataTemplates.axaml" />
                 <ResourceInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />

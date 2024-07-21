@@ -86,5 +86,24 @@
                 <Setter Property="Opacity" Value=".8" />
             </Style>
         </Style>
+
+
+    </ControlTheme>
+
+    <!--  窗口操作按钮的样式（最小化、最大化、关闭）  -->
+    <ControlTheme
+        BasedOn="{StaticResource {x:Type ucs:IconPathButton}}"
+        TargetType="ucs:IconPathButton"
+        x:Key="WindowOptionsButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="OverBrush" Value="{DynamicResource PrimaryBrush50}" />
+        <Setter Property="PressBrush" Value="{DynamicResource PrimaryBrush70}" />
+        <Setter Property="Foreground" Value="{DynamicResource TxtForeBrush}" />
+        <Setter Property="Width" Value="24" />
+        <Setter Property="Height" Value="24" />
+        <Setter Property="CornerRadius" Value="12" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Stretch" Value="Uniform" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </ControlTheme>
 </ResourceDictionary>
