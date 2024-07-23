@@ -8,10 +8,6 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
-        <Setter Property="OverBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}" />
-        <Setter Property="PressBrush" Value="{Binding RelativeSource={RelativeSource Self}, Path=Background}" />
-        <Setter Property="OverForeground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
-        <Setter Property="PressForeground" Value="{Binding RelativeSource={RelativeSource Self}, Path=Foreground}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ucs:IconPathButton}">
@@ -21,7 +17,6 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Height="{TemplateBinding Height}"
-                        Padding="{TemplateBinding Padding}"
                         RenderTransformOrigin=".5,.5"
                         Width="{TemplateBinding Width}"
                         x:Name="Bd">
@@ -32,6 +27,7 @@
                             Data="{TemplateBinding IconPath}"
                             Fill="{TemplateBinding Foreground}"
                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
                             Stretch="{TemplateBinding Stretch}"
                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                             x:Name="IconPath" />
@@ -57,53 +53,38 @@
             </Setter>
         </Style>
 
-        <Style Selector="^:pointerover">
-            <Style Selector="^ /template/ Path">
-                <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OverForeground}" />
+        <!--  窗口操作按钮的样式（最小化、最大化、关闭）  -->
+        <Style Selector="^.WindowOperationBtn">
+            <Setter Property="Height" Value="24" />
+            <Setter Property="Width" Value="24" />
+            <Setter Property="CornerRadius" Value="12" />
+            <Setter Property="Foreground" Value="{DynamicResource TxtForeColor}" />
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="Stretch" Value="Uniform" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Style Selector="^:pointerover">
+                <Style Selector="^ /template/ Border">
+                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush50}" />
+                </Style>
             </Style>
-
-            <Style Selector="^ /template/ Border">
-                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OverBrush}" />
+            <Style Selector="^:pressed">
+                <Style Selector="^ /template/ Border">
+                    <Setter Property="Background" Value="{DynamicResource PrimaryBrush70}" />
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="0.97" ScaleY="0.97" />
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Style>
+            <Style Selector="^:disabled">
+                <Style Selector="^ /template/ Border">
+                    <Setter Property="Opacity" Value=".8" />
+                </Style>
             </Style>
         </Style>
-
-        <Style Selector="^:pressed">
-            <Style Selector="^ /template/ Path">
-                <Setter Property="Fill" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressForeground}" />
-            </Style>
-            <Style Selector="^ /template/ Border">
-                <Setter Property="Background" Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=PressBrush}" />
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <ScaleTransform ScaleX="0.97" ScaleY="0.97" />
-                    </Setter.Value>
-                </Setter>
-            </Style>
-        </Style>
-
-        <Style Selector="^:disabled">
-            <Style Selector="^ /template/ Border">
-                <Setter Property="Opacity" Value=".8" />
-            </Style>
-        </Style>
-
-
     </ControlTheme>
 
-    <!--  窗口操作按钮的样式（最小化、最大化、关闭）  -->
-    <ControlTheme
-        BasedOn="{StaticResource {x:Type ucs:IconPathButton}}"
-        TargetType="ucs:IconPathButton"
-        x:Key="WindowOptionsButton">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="OverBrush" Value="{DynamicResource PrimaryBrush50}" />
-        <Setter Property="PressBrush" Value="{DynamicResource PrimaryBrush70}" />
-        <Setter Property="Foreground" Value="{DynamicResource TxtForeBrush}" />
-        <Setter Property="Width" Value="24" />
-        <Setter Property="Height" Value="24" />
-        <Setter Property="CornerRadius" Value="12" />
-        <Setter Property="Padding" Value="4" />
-        <Setter Property="Stretch" Value="Uniform" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-    </ControlTheme>
+
 </ResourceDictionary>

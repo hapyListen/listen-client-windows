@@ -70,34 +70,21 @@
                 <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
 
                     <ucs:IconPathButton
+                        Classes="WindowOperationBtn"
                         Click="WindowMinButton_OnClick"
-                        IconPath="{StaticResource WindowMinIcon}"
-                        Theme="{StaticResource WindowOptionsButton}"
-                        VerticalContentAlignment="Bottom" />
+                        IconPath="{StaticResource WindowMinIcon}" />
 
                     <ucs:IconPathButton
-                        Background="Transparent"
+                        Classes="WindowOperationBtn"
                         Click="WindowMaxButton_OnClick"
-                        CornerRadius="12"
-                        Foreground="{DynamicResource TxtForeColor}"
-                        Height="24"
                         IconPath="{StaticResource WindowMaxIcon}"
                         Margin="12,0"
-                        Padding="4"
-                        Stretch="Uniform"
-                        Width="24"
                         x:Name="WindowMaxButton" />
 
                     <ucs:IconPathButton
-                        Background="Transparent"
+                        Classes="WindowOperationBtn"
                         Click="CloseWindowButton_OnClick"
-                        CornerRadius="12"
-                        Foreground="{DynamicResource TxtForeColor}"
-                        Height="24"
-                        IconPath="{StaticResource WindowCloseIcon}"
-                        Padding="4"
-                        Stretch="Uniform"
-                        Width="24" />
+                        IconPath="{StaticResource WindowCloseIcon}" />
                 </StackPanel>
             </DockPanel>
         </Border>
