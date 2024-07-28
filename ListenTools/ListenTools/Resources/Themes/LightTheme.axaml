@@ -1,7 +1,11 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
     <Color x:Key="TxtForeColor">#FEFEFE</Color>
+    <Color x:Key="ForeColor2">#969696</Color>
+    <Color x:Key="ForeColor3">#9FA2A7</Color>
+    <Color x:Key="ForeColor4">#AEB1B8</Color>
     <Color x:Key="PrimaryColor">#5965F3</Color>
+    <Color x:Key="PrimaryColor2">#2A2C30</Color>
 
     <SolidColorBrush Color="{StaticResource TxtForeColor}" x:Key="TxtForeBrush" />
     <SolidColorBrush

@@ -10,7 +10,6 @@
 
     <ItemGroup>
         <Folder Include="Controls\Base\" />
-        <Folder Include="Models\"/>
         <AvaloniaResource Include="Assets\**"/>
         <None Remove="Resources\Images\logo.png" />
         <AvaloniaResource Include="Resources\Images\logo.png" />

@@ -1,5 +1,91 @@
-<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:model="clr-namespace:ListenTools.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
 
     <DataTemplate x:Key="GroupChatListTemplate" />
+
+    <DataTemplate DataType="{x:Type model:MainMenuItemBdm}" x:Key="MainMenuItemTemplate">
+        <Border
+            Background="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListBoxItem}, Path=Background}"
+            BorderThickness="1"
+            CornerRadius="8"
+            Height="48"
+            Padding="20,12"
+            Width="216"
+            x:Name="Bd">
+            <Grid ColumnDefinitions="24,12,*">
+                <Path
+                    Data="{Binding Icon}"
+                    Fill="{StaticResource ForeColor2}"
+                    Grid.Column="0"
+                    Height="24"
+                    Stretch="Uniform"
+                    Width="24"
+                    x:Name="IconPath" />
+                <TextBlock
+                    FontFamily="{StaticResource HarmonyOsFont}"
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource ForeColor4}"
+                    Grid.Column="2"
+                    Text="{Binding Title}"
+                    VerticalAlignment="Center"
+                    x:Name="TitleText" />
+            </Grid>
+        </Border>
+    </DataTemplate>
+
+
+    <ControlTheme TargetType="{x:Type ListBoxItem}" x:Key="MainMenuItemStyle">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Cursor" Value="Hand" />
+
+        <!-- <Setter Property="Template"> -->
+        <!--     <Setter.Value> -->
+        <!--         <ControlTemplate TargetType="{x:Type ListBoxItem}"> -->
+        <!--  <Border  -->
+        <!--  Background="{TemplateBinding Background}"  -->
+        <!--  BorderBrush="{TemplateBinding BorderBrush}"  -->
+        <!--  BorderThickness="{TemplateBinding BorderThickness}"  -->
+        <!--  Padding="{TemplateBinding Padding}">  -->
+        <!--  <ContentPresenter  -->
+        <!--  Content="{TemplateBinding Content}"  -->
+        <!--  ContentTemplate="{TemplateBinding ContentTemplate}"  -->
+        <!--  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"  -->
+        <!--  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />  -->
+        <!--             </Border> -->
+        <!--         </ControlTemplate> -->
+        <!--     </Setter.Value> -->
+        <!-- </Setter> -->
+
+        <!-- <Style Selector="^:pointerover /template/ ContentControl &gt; Border#Bd"> -->
+        <!--     <Setter Property="Background" Value="{StaticResource PrimaryColor}" /> -->
+        <!-- </Style> -->
+
+        <!-- <Style Selector="^:pointerover /template/ ContentPresenter  Border#Bd"> -->
+        <!--     <Setter Property="Background" Value="{StaticResource PrimaryColor}" /> -->
+        <!-- </Style> -->
+
+
+        <!-- <Style Selector="^:selected"> -->
+        <!--     <Style Selector="^  Border#Bd"> -->
+        <!--         <Setter Property="Background" Value="{StaticResource PrimaryColor}" /> -->
+        <!--     </Style> -->
+        <!--    -->
+        <!--     <Style Selector="^  Path#IconPath"> -->
+        <!--         <Setter Property="Fill" Value="{StaticResource TxtForeColor}" /> -->
+        <!--     </Style> -->
+        <!--    -->
+        <!--     <Style Selector="^  TextBlock#TitleText"> -->
+        <!--         <Setter Property="Foreground" Value="{StaticResource TxtForeColor}" /> -->
+        <!--     </Style> -->
+        <!-- </Style> -->
+    </ControlTheme>
+
 </ResourceDictionary>

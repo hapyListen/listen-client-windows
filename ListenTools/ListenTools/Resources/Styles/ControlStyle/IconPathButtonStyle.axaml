@@ -7,7 +7,7 @@
     <ControlTheme TargetType="ucs:IconPathButton" x:Key="{x:Type ucs:IconPathButton}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="Foreground" Value="{DynamicResource ButtonForeground}" />
+        <Setter Property="Foreground" Value="{DynamicResource TxtForeColor}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ucs:IconPathButton}">
@@ -53,13 +53,14 @@
             </Setter>
         </Style>
 
+
+
         <!--  窗口操作按钮的样式（最小化、最大化、关闭）  -->
-        <Style Selector="^.WindowOperationBtn">
+        <Style Selector="^.Default">
             <Setter Property="Height" Value="24" />
             <Setter Property="Width" Value="24" />
             <Setter Property="CornerRadius" Value="12" />
-            <Setter Property="Foreground" Value="{DynamicResource TxtForeColor}" />
-            <Setter Property="Padding" Value="4" />
+            <Setter Property="Padding" Value="6" />
             <Setter Property="Stretch" Value="Uniform" />
             <Setter Property="HorizontalContentAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />

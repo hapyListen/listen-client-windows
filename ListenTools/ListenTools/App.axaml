@@ -9,7 +9,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="VmLocator" />
-            <FontFamily x:Key="HarmonyOsFont">avares://Resources/Fonts/HarmonyOS.woff2</FontFamily>
+            <FontFamily x:Key="HarmonyOsFont">avares://Resources/Fonts/HarmonyOS_Sans_Regular.ttf</FontFamily>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Resources/Themes/LightTheme.axaml" />
                 <ResourceInclude Source="/Resources/Geometries.axaml" />

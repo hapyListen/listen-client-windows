@@ -1,10 +1,7 @@
 <Window
     DataContext="{Binding Source={StaticResource VmLocator}, Path=MainVm}"
-    ExtendClientAreaChromeHints="NoChrome"
-    ExtendClientAreaTitleBarHeightHint="-1"
-    ExtendClientAreaToDecorationsHint="True"
     Height="912"
-    SystemDecorations="None"
+    Icon="/Resources/Images/logo.png"
     Title="ListenTools"
     Width="1280"
     d:DesignHeight="450"
@@ -22,71 +19,106 @@
     <Design.DataContext>
         <vm:MainWindowViewModel />
     </Design.DataContext>
+    <!--
+        无边框窗口设置
+        SystemDecorations="None"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        ExtendClientAreaToDecorationsHint="True"
+    -->
 
-    <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*">
+    <Grid ColumnDefinitions="Auto,*">
         <!--  标题栏  -->
         <Border
             Background="#1C1B2A"
-            DoubleTapped="TitleBorder_OnDoubleTapped"
             Grid.Column="0"
-            Grid.ColumnSpan="2"
-            Grid.Row="0"
-            Height="72"
-            Padding="12,0"
-            PointerPressed="TitleBorder_OnPointerPressed">
-            <DockPanel LastChildFill="False">
+            Padding="12"
+            Width="240">
+            <Grid RowDefinitions="Auto,*,Auto">
                 <!--  Logo 和标题  -->
-                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <StackPanel
+                    DockPanel.Dock="Top"
+                    Grid.Row="0"
+                    Margin="0,12,0,20">
+                    <StackPanel Orientation="Horizontal">
+                        <Rectangle
+                            Height="48"
+                            RadiusX="24"
+                            RadiusY="24"
+                            Width="48">
+                            <Rectangle.Fill>
+                                <ImageBrush Source="/Resources/Images/logo.png" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+
+                        <TextBlock
+                            FontFamily="{StaticResource HarmonyOsFont}"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Margin="16,0,0,0"
+                            Text="Hapy Listen"
+                            VerticalAlignment="Center">
+                            <TextBlock.Foreground>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="Aqua" Offset="0" />
+                                    <GradientStop Color="Red" Offset="0.25" />
+                                    <GradientStop Color="Yellow" Offset="0.5" />
+                                    <GradientStop Color="Blue" Offset="0.75" />
+                                    <GradientStop Color="Green" Offset="1" />
+                                </LinearGradientBrush>
+                            </TextBlock.Foreground>
+                        </TextBlock>
+                    </StackPanel>
+
                     <Rectangle
-                        Height="48"
-                        RadiusX="24"
-                        RadiusY="24"
-                        VerticalAlignment="Center"
-                        Width="48">
-                        <Rectangle.Fill>
-                            <ImageBrush Source="/Resources/Images/logo.png" />
-                        </Rectangle.Fill>
-                    </Rectangle>
-
-                    <TextBlock
-                        FontFamily="{StaticResource HarmonyOsFont}"
-                        FontSize="18"
-                        FontWeight="Bold"
-                        Margin="6,0,0,0"
-                        Text="Hapy Listen"
-                        VerticalAlignment="Center">
-                        <TextBlock.Foreground>
-                            <LinearGradientBrush>
-                                <GradientStop Color="Aqua" Offset="0" />
-                                <GradientStop Color="Red" Offset="0.25" />
-                                <GradientStop Color="Yellow" Offset="0.5" />
-                                <GradientStop Color="Blue" Offset="0.75" />
-                                <GradientStop Color="Green" Offset="1" />
-                            </LinearGradientBrush>
-                        </TextBlock.Foreground>
-                    </TextBlock>
+                        Height="1"
+                        Margin="0,18,0,0"
+                        Stroke="{StaticResource ForeColor2}"
+                        StrokeThickness="1" />
                 </StackPanel>
 
-                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-
-                    <ucs:IconPathButton
-                        Classes="WindowOperationBtn"
-                        Click="WindowMinButton_OnClick"
-                        IconPath="{StaticResource WindowMinIcon}" />
-
-                    <ucs:IconPathButton
-                        Classes="WindowOperationBtn"
-                        Click="WindowMaxButton_OnClick"
-                        IconPath="{StaticResource WindowMaxIcon}"
-                        Margin="12,0"
-                        x:Name="WindowMaxButton" />
-
-                    <ucs:IconPathButton
-                        Classes="WindowOperationBtn"
-                        Click="CloseWindowButton_OnClick"
-                        IconPath="{StaticResource WindowCloseIcon}" />
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <ListBox
+                        Background="Transparent"
+                        ItemContainerTheme="{StaticResource MainMenuItemStyle}"
+                        ItemTemplate="{StaticResource MainMenuItemTemplate}"
+                        ItemsSource="{Binding MainMenuSource}" />
                 </StackPanel>
-            </DockPanel>
+
+                <Border Grid.Row="2" Height="64">
+                    <Grid ColumnDefinitions="Auto,*,Auto">
+
+                        <Rectangle
+                            Fill="Aqua"
+                            Grid.Column="0"
+                            Height="44"
+                            RadiusX="22"
+                            RadiusY="22"
+                            Width="44" />
+
+                        <TextBlock
+                            FontFamily="{StaticResource HarmonyOsFont}"
+                            FontSize="14"
+                            Foreground="{StaticResource TxtForeBrush}"
+                            Grid.Column="1"
+                            Margin="12,0,0,0"
+                            Text="Joker"
+                            VerticalAlignment="Center" />
+
+                        <ucs:IconPathButton
+                            Classes="Default"
+                            DockPanel.Dock="Right"
+                            Foreground="{StaticResource ForeColor3}"
+                            Grid.Column="2"
+                            Height="34"
+                            HorizontalAlignment="Center"
+                            IconPath="{StaticResource SettingsIcon}"
+                            Padding="6"
+                            Width="34" />
+                    </Grid>
+                </Border>
+
+            </Grid>
         </Border>
     </Grid>
 
