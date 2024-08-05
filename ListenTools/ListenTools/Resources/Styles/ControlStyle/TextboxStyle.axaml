@@ -1,0 +1,102 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <ControlTheme TargetType="TextBox" x:Key="HomeSearchTextBoxTheme">
+        <Setter Property="Background" Value="#F9F9F9" />
+        <Setter Property="Foreground" Value="#292742" />
+        <Setter Property="Watermark" Value="房间号、房间名、房主..." />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Width" Value="536" />
+        <Setter Property="Opacity" Value=".95" />
+        <Setter Property="BorderBrush" Value="#F0F0F0" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="#F9F9F9" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="{TemplateBinding CornerRadius}"
+                        Height="{TemplateBinding Height}"
+                        Name="Bd"
+                        Opacity="{TemplateBinding Opacity}"
+                        Width="{TemplateBinding Width}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Duration="0:0:0.2"
+                                    Easing="SineEaseInOut"
+                                    Property="BorderBrush" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <Grid ColumnDefinitions="Auto,*,Auto">
+                            <TextBlock
+                                FontFamily="{StaticResource HarmonyOsBoldFont}"
+                                FontSize="14"
+                                FontWeight="Bold"
+                                Foreground="#1D1F22"
+                                Grid.Column="0"
+                                Margin="24,0,20,0"
+                                Text="搜索"
+                                VerticalAlignment="Center" />
+
+                            <ScrollViewer
+                                Grid.Column="1"
+                                HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                                <Panel>
+                                    <TextBlock
+                                        Cursor="Ibeam"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="#9FA2A7"
+                                        IsVisible="{TemplateBinding Text,
+                                                                    Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                        Name="watermark"
+                                        Text="{TemplateBinding Watermark}"
+                                        TextAlignment="{TemplateBinding TextAlignment}"
+                                        TextWrapping="{TemplateBinding TextWrapping}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    <TextPresenter
+                                        Cursor="Ibeam"
+                                        Margin="0,0,0,0"
+                                        Name="PART_TextPresenter"
+                                        SelectionBrush="{TemplateBinding SelectionBrush}"
+                                        SelectionEnd="{TemplateBinding SelectionEnd}"
+                                        SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                        SelectionStart="{TemplateBinding SelectionStart}"
+                                        Text="{TemplateBinding Text,
+                                                               Mode=TwoWay}"
+                                        TextAlignment="{TemplateBinding TextAlignment}"
+                                        TextBlock.FontSize="{TemplateBinding FontSize}"
+                                        TextBlock.Foreground="{TemplateBinding Foreground}"
+                                        TextWrapping="{TemplateBinding TextWrapping}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Panel>
+                            </ScrollViewer>
+
+                            <Path
+                                Data="{StaticResource SearchIcon}"
+                                Fill="#71767D"
+                                Grid.Column="2"
+                                Height="16"
+                                Margin="20,0"
+                                Stretch="Uniform"
+                                VerticalAlignment="Center"
+                                Width="16" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Styles>
+            <Style Selector="TextBox:pointerover /template/ Border#Bd">
+                <Setter Property="BorderBrush" Value="{StaticResource PrimaryColor}" />
+            </Style>
+        </Styles>
+    </ControlTheme>
+</ResourceDictionary>

@@ -9,18 +9,25 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="VmLocator" />
-            <FontFamily x:Key="HarmonyOsFont">avares://Resources/Fonts/HarmonyOS_Sans_Regular.ttf</FontFamily>
+            <FontFamily x:Key="HarmonyOsFont">avares://ListenTools/Resources/Fonts/HarmonyOS_Sans_SC_Regular.ttf#HarmonyOS Sans SC</FontFamily>
+            <FontFamily x:Key="HarmonyOsBoldFont">avares://ListenTools/Resources/Fonts/HarmonyOS_Sans_SC_Bold.ttf#HarmonyOS Sans SC</FontFamily>
+            <FontFamily x:Key="SourceHanFont">avares://ListenTools/Resources/Fonts/SourceHanSansCN-Regular.ttf#Source Han Sans CN</FontFamily>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Resources/Themes/LightTheme.axaml" />
                 <ResourceInclude Source="/Resources/Geometries.axaml" />
+                <ResourceInclude Source="/Converters/ConverterDictionary.axaml" />
                 <ResourceInclude Source="/Resources/Styles/DataTemplates.axaml" />
                 <ResourceInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />
+                <ResourceInclude Source="/Resources/Styles/Generic.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 
     <Application.Styles>
-        <FluentTheme />
-        <StyleInclude Source="/Resources/Styles/Generic.axaml" />
+        <FluentTheme DensityStyle="Normal" />
+        <Style Selector="Window">
+            <Setter Property="FontFamily" Value="{StaticResource HarmonyOsFont}" />
+        </Style>
+
     </Application.Styles>
 </Application>

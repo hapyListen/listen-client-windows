@@ -13,15 +13,26 @@
         <AvaloniaResource Include="Assets\**"/>
         <None Remove="Resources\Images\logo.png" />
         <AvaloniaResource Include="Resources\Images\logo.png" />
+        <None Remove="Resources\Images\homeTitleImage.png" />
+        <AvaloniaResource Include="Resources\Images\homeTitleImage.png" />
+        <None Remove="Resources\Fonts\SourceHanSansCN-Regular.ttf" />
+        <AvaloniaResource Include="Resources\Fonts\SourceHanSansCN-Regular.ttf" />
+        <None Remove="Resources\Fonts\HarmonyOS_Sans_SC_Regular.ttf" />
+        <AvaloniaResource Include="Resources\Fonts\HarmonyOS_Sans_SC_Regular.ttf" />
+        <None Remove="Resources\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
+        <AvaloniaResource Include="Resources\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
+        <None Remove="Resources\Images\音乐.png" />
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1" />
         <PackageReference Include="Avalonia" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Desktop" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10"/>
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10"/>
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10"/>
+        <PackageReference Include="Avalonia_Gif" Version="1.0.0" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.6.24327.7" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0-preview.6.24327.7" />

@@ -1,0 +1,123 @@
+<UserControl
+    Background="{StaticResource PrimaryColor}"
+    mc:Ignorable="d"
+    x:Class="ListenTools.Views.Pages.RoomListView"
+    x:DataType="vm:RoomListViewModel"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:ListenTools.ViewModels"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.DataContext>
+        <vm:RoomListViewModel />
+    </Design.DataContext>
+    <Grid ColumnDefinitions="240,*">
+        <Border
+            Background="#292742"
+            Grid.Column="0"
+            Padding="12"
+            Width="240">
+            <Grid RowDefinitions="Auto,*,Auto">
+                <!--  标题  -->
+                <TextBlock
+                    FontFamily="{StaticResource HarmonyOsBoldFont}"
+                    FontSize="18"
+                    FontWeight="Bold"
+                    Foreground="#FAFAFA"
+                    Margin="20,23,0,30"
+                    Text="Hapy Listen"
+                    VerticalAlignment="Center" />
+
+                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
+                    <ListBox
+                        Background="Transparent"
+                        ItemContainerTheme="{StaticResource MainMenuItemStyle}"
+                        ItemTemplate="{StaticResource MainMenuItemTemplate}"
+                        ItemsSource="{Binding MainMenuSource}" />
+                </StackPanel>
+
+                <Border Grid.Row="2" Height="64">
+                    <Grid ColumnDefinitions="Auto,*">
+                        <Rectangle
+                            Fill="Aqua"
+                            Grid.Column="0"
+                            Height="44"
+                            RadiusX="22"
+                            RadiusY="22"
+                            Width="44" />
+
+                        <StackPanel
+                            Grid.Column="1"
+                            Margin="12,0,0,0"
+                            VerticalAlignment="Center">
+                            <TextBlock
+                                FontFamily="{StaticResource HarmonyOsBoldFont}"
+                                FontSize="14"
+                                Foreground="#F1F2F3"
+                                Text="Joker" />
+                            <TextBlock
+                                FontSize="12"
+                                Foreground="#F1F2F3"
+                                Margin="0,4,0,0"
+                                Opacity=".57"
+                                Text="听歌中..." />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Border>
+
+
+        <Grid
+            ClipToBounds="False"
+            Grid.Column="1"
+            Margin="32,32,32,0"
+            RowDefinitions="Auto,Auto,*">
+            <Rectangle
+                Grid.Row="0"
+                Height="300"
+                RadiusX="35"
+                RadiusY="35"
+                Stroke="{StaticResource DarkColor}"
+                StrokeThickness="10">
+                <Rectangle.Fill>
+                    <ImageBrush Source="avares://ListenTools/Resources/Images/homeTitleImage.png" Stretch="UniformToFill" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <!--  搜索  -->
+            <TextBox
+                Grid.Row="0"
+                HorizontalAlignment="Right"
+                Margin="0,0,147,0"
+                Theme="{StaticResource HomeSearchTextBoxTheme}"
+                VerticalAlignment="Center" />
+
+            <TextBlock
+                FontFamily="{StaticResource HarmonyOsBoldFont}"
+                FontSize="30"
+                FontWeight="Bold"
+                Foreground="{StaticResource TxtForeColor}"
+                Grid.Row="1"
+                Margin="0,28,0,0"
+                Text="热门房间" />
+
+            <ListBox
+                Background="Transparent"
+                ClipToBounds="False"
+                Grid.Row="2"
+                ItemContainerTheme="{StaticResource RoomCardItemTheme}"
+                ItemTemplate="{StaticResource HotRoomCardTemplate}"
+                ItemsSource="{Binding HotRoomList}"
+                Margin="0,23,0,0">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel ClipToBounds="False" Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+        </Grid>
+    </Grid>
+
+</UserControl>

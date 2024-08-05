@@ -6,6 +6,7 @@
     <Color x:Key="ForeColor4">#AEB1B8</Color>
     <Color x:Key="PrimaryColor">#5965F3</Color>
     <Color x:Key="PrimaryColor2">#2A2C30</Color>
+    <Color x:Key="DarkColor">#100F1D</Color>
 
     <SolidColorBrush Color="{StaticResource TxtForeColor}" x:Key="TxtForeBrush" />
     <SolidColorBrush

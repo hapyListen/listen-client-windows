@@ -3,15 +3,17 @@
     Height="912"
     Icon="/Resources/Images/logo.png"
     Title="ListenTools"
-    Width="1280"
-    d:DesignHeight="450"
-    d:DesignWidth="800"
+    Width="1600"
+    WindowStartupLocation="CenterScreen"
+    d:DesignHeight="912"
+    d:DesignWidth="1600"
     mc:Ignorable="d"
     x:Class="ListenTools.Views.MainWindow"
     x:CompileBindings="False"
     x:DataType="vm:MainWindowViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ListenTools.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:vm="using:ListenTools.ViewModels"
@@ -27,99 +29,86 @@
         ExtendClientAreaToDecorationsHint="True"
     -->
 
-    <Grid ColumnDefinitions="Auto,*">
-        <!--  标题栏  -->
+    <Grid ColumnDefinitions="72,*">
         <Border
             Background="#1C1B2A"
             Grid.Column="0"
-            Padding="12"
-            Width="240">
-            <Grid RowDefinitions="Auto,*,Auto">
-                <!--  Logo 和标题  -->
-                <StackPanel
-                    DockPanel.Dock="Top"
-                    Grid.Row="0"
-                    Margin="0,12,0,20">
-                    <StackPanel Orientation="Horizontal">
-                        <Rectangle
-                            Height="48"
-                            RadiusX="24"
-                            RadiusY="24"
-                            Width="48">
-                            <Rectangle.Fill>
-                                <ImageBrush Source="/Resources/Images/logo.png" />
-                            </Rectangle.Fill>
-                        </Rectangle>
+            Padding="0,24">
+            <Grid RowDefinitions="Auto,Auto,*,Auto">
+                <StackPanel Grid.Row="0">
+                    <Button
+                        Background="Transparent"
+                        CornerRadius="24"
+                        Cursor="Hand"
+                        Height="48"
+                        HorizontalAlignment="Center"
+                        Padding="0"
+                        Width="48">
+                        <Image Source="/Resources/Images/logo.png" />
+                    </Button>
+                    <Rectangle
+                        Fill="#D7D7D7"
+                        Height="1"
+                        HorizontalAlignment="Center"
+                        Margin="0,18"
+                        Opacity=".2"
+                        Width="36" />
+                </StackPanel>
 
-                        <TextBlock
-                            FontFamily="{StaticResource HarmonyOsFont}"
-                            FontSize="18"
-                            FontWeight="Bold"
-                            Margin="16,0,0,0"
-                            Text="Hapy Listen"
-                            VerticalAlignment="Center">
-                            <TextBlock.Foreground>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="Aqua" Offset="0" />
-                                    <GradientStop Color="Red" Offset="0.25" />
-                                    <GradientStop Color="Yellow" Offset="0.5" />
-                                    <GradientStop Color="Blue" Offset="0.75" />
-                                    <GradientStop Color="Green" Offset="1" />
-                                </LinearGradientBrush>
-                            </TextBlock.Foreground>
-                        </TextBlock>
-                    </StackPanel>
+                <!--  音乐界面  -->
+                <StackPanel Grid.Row="1">
+                    <Button
+                        ClipToBounds="True"
+                        CornerRadius="24"
+                        Cursor="Hand"
+                        Height="48"
+                        HorizontalAlignment="Center"
+                        Padding="0"
+                        ToolTip.Tip="音乐播放器"
+                        Width="48">
+                        <Panel>
+                            <Ellipse Fill="#FFFFFF" />
+                            <Path
+                                Data="{StaticResource MusicIcon}"
+                                Fill="#5965F3"
+                                Opacity=".85"
+                                Stretch="Uniform" />
+                        </Panel>
+                    </Button>
 
                     <Rectangle
+                        Fill="#D7D7D7"
                         Height="1"
+                        HorizontalAlignment="Center"
                         Margin="0,18,0,0"
-                        Stroke="{StaticResource ForeColor2}"
-                        StrokeThickness="1" />
+                        Opacity=".2"
+                        Width="36" />
                 </StackPanel>
 
-                <StackPanel Grid.Row="1" HorizontalAlignment="Center">
-                    <ListBox
-                        Background="Transparent"
-                        ItemContainerTheme="{StaticResource MainMenuItemStyle}"
-                        ItemTemplate="{StaticResource MainMenuItemTemplate}"
-                        ItemsSource="{Binding MainMenuSource}" />
-                </StackPanel>
+                <ListBox
+                    Background="Transparent"
+                    Grid.Row="2"
+                    Margin="0,18" />
 
-                <Border Grid.Row="2" Height="64">
-                    <Grid ColumnDefinitions="Auto,*,Auto">
-
-                        <Rectangle
-                            Fill="Aqua"
-                            Grid.Column="0"
-                            Height="44"
-                            RadiusX="22"
-                            RadiusY="22"
-                            Width="44" />
-
-                        <TextBlock
-                            FontFamily="{StaticResource HarmonyOsFont}"
-                            FontSize="14"
-                            Foreground="{StaticResource TxtForeBrush}"
-                            Grid.Column="1"
-                            Margin="12,0,0,0"
-                            Text="Joker"
-                            VerticalAlignment="Center" />
-
-                        <ucs:IconPathButton
-                            Classes="Default"
-                            DockPanel.Dock="Right"
-                            Foreground="{StaticResource ForeColor3}"
-                            Grid.Column="2"
-                            Height="34"
-                            HorizontalAlignment="Center"
-                            IconPath="{StaticResource SettingsIcon}"
-                            Padding="6"
-                            Width="34" />
-                    </Grid>
-                </Border>
-
+                <!--  设置按钮  -->
+                <Button
+                    Background="Transparent"
+                    CornerRadius="12"
+                    Cursor="Hand"
+                    Grid.Row="3"
+                    Height="24"
+                    HorizontalAlignment="Center"
+                    Padding="0"
+                    Width="24">
+                    <Path
+                        Data="{StaticResource SettingsIcon}"
+                        Fill="#9FA2A7"
+                        Stretch="Fill" />
+                </Button>
             </Grid>
         </Border>
+
+        <ContentControl Grid.Column="1" x:Name="ViewContent" />
     </Grid>
 
 </Window>

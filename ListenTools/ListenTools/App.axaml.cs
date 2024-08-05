@@ -17,11 +17,13 @@ public partial class App : Application
         AvaloniaXamlLoader.Load(this);
 
         IServiceCollection serviceCollection = new ServiceCollection();
-        serviceCollection.AddSingleton<HttpClient>();
+        serviceCollection.AddHttpClient();
         serviceCollection.RegisterViewModel();
         var provider = serviceCollection.BuildServiceProvider();
         var vmLocator = this.Resources["VmLocator"] as ViewModels.ViewModelLocator;
         vmLocator?.SetServiceProvider(provider);
+
+        GlobalContext.Instance.SetServiceProvider(provider);
     }
 
     public override void OnFrameworkInitializationCompleted()
@@ -41,5 +43,6 @@ static class RegisterProvider
     public static void RegisterViewModel(this IServiceCollection collection)
     {
         collection.AddSingleton<ViewModels.MainWindowViewModel>();
+        collection.AddSingleton<ViewModels.RoomListViewModel>();
     }
 }
