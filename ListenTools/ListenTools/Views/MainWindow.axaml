@@ -1,5 +1,6 @@
 <Window
     DataContext="{Binding Source={StaticResource VmLocator}, Path=MainVm}"
+    ExtendClientAreaToDecorationsHint="False"
     Height="912"
     Icon="/Resources/Images/logo.png"
     Title="ListenTools"
@@ -56,33 +57,48 @@
                 </StackPanel>
 
                 <!--  音乐界面  -->
-                <StackPanel Grid.Row="1">
+                <StackPanel Grid.Row="1" IsVisible="False">
                     <Button
                         ClipToBounds="True"
-                        CornerRadius="24"
-                        Cursor="Hand"
-                        Height="48"
+                        Foreground="#969696"
+                        Height="32"
                         HorizontalAlignment="Center"
                         Padding="0"
-                        ToolTip.Tip="音乐播放器"
-                        Width="48">
-                        <Panel>
-                            <Ellipse Fill="#FFFFFF" />
-                            <Path
-                                Data="{StaticResource MusicIcon}"
-                                Fill="#5965F3"
-                                Opacity=".85"
-                                Stretch="Uniform" />
-                        </Panel>
-                    </Button>
+                        Theme="{StaticResource IconPathButton}"
+                        Width="32"
+                        ucs:IconButton.IconPath="{StaticResource FreeMP3Icon}" />
 
-                    <Rectangle
-                        Fill="#D7D7D7"
-                        Height="1"
+                    <Button
+                        ClipToBounds="True"
+                        Foreground="#969696"
+                        Height="32"
                         HorizontalAlignment="Center"
                         Margin="0,18,0,0"
-                        Opacity=".2"
-                        Width="36" />
+                        Padding="0"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="32"
+                        ucs:IconButton.IconPath="{StaticResource NeteasyMusicIcon}" />
+
+                    <Button
+                        ClipToBounds="True"
+                        Foreground="#969696"
+                        Height="32"
+                        HorizontalAlignment="Center"
+                        Margin="0,18,0,0"
+                        Padding="0"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="32"
+                        ucs:IconButton.IconPath="{StaticResource BiliMusicIcon}" />
+                    <Button
+                        ClipToBounds="True"
+                        Foreground="#969696"
+                        Height="32"
+                        HorizontalAlignment="Center"
+                        Margin="0,18,0,0"
+                        Padding="0"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="32"
+                        ucs:IconButton.IconPath="{StaticResource ListenMusicRoomIcon}" />
                 </StackPanel>
 
                 <ListBox
@@ -93,18 +109,13 @@
                 <!--  设置按钮  -->
                 <Button
                     Background="Transparent"
-                    CornerRadius="12"
-                    Cursor="Hand"
                     Grid.Row="3"
                     Height="24"
                     HorizontalAlignment="Center"
                     Padding="0"
-                    Width="24">
-                    <Path
-                        Data="{StaticResource SettingsIcon}"
-                        Fill="#9FA2A7"
-                        Stretch="Fill" />
-                </Button>
+                    Theme="{StaticResource IconPathButton}"
+                    Width="24"
+                    ucs:IconButton.IconPath="{StaticResource SettingsIcon}" />
             </Grid>
         </Border>
 

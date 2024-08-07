@@ -83,14 +83,16 @@
                             TextTrimming="CharacterEllipsis" />
                     </StackPanel>
 
-                    <ucs:IconPathButton
-                        Foreground="#FFFFFF"
+                    <Button
                         Grid.Column="2"
-                        Height="16"
-                        IconPath="{StaticResource JoinRoomIcon}"
+                        Height="20"
                         Margin="0,0,14,0"
+                        Padding="2"
+                        Theme="{StaticResource IconPathButton}"
                         VerticalAlignment="Center"
-                        Width="16" />
+                        Width="20"
+                        ucs:IconButton.IconPath="{StaticResource JoinRoomIcon}"
+                        ucs:IconButton.IconStretch="UniformToFill" />
                 </Grid>
             </Border>
 
@@ -137,6 +139,47 @@
                     Foreground="#9FA2A7"
                     Text="{Binding RoomType}" />
             </DockPanel>
+        </Grid>
+    </DataTemplate>
+
+    <!--  房间内的用户列表模板  -->
+    <DataTemplate DataType="{x:Type bindingModels:ChatRoomUserBdm}" x:Key="ChatRoomUsersItemTemplate">
+        <Grid Background="Transparent" ColumnDefinitions="36,12,*">
+            <Panel Grid.Column="0">
+                <ucs:AsyncImage Stretch="Uniform" UrlSource="{Binding HeadImage}" />
+                <Rectangle
+                    Fill="{Binding IsOnline, Converter={StaticResource BoolToColor}, ConverterParameter=#6AD959|#5E5E5E}"
+                    Height="14"
+                    HorizontalAlignment="Right"
+                    RadiusX="7"
+                    RadiusY="7"
+                    Stroke="#2A2C30"
+                    StrokeThickness="2"
+                    VerticalAlignment="Top"
+                    Width="14">
+                    <Rectangle.RenderTransform>
+                        <TranslateTransform X="4" Y="-4" />
+                    </Rectangle.RenderTransform>
+                </Rectangle>
+            </Panel>
+
+            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                <TextBlock
+                    FontFamily="{StaticResource HarmonyOsBoldFont}"
+                    FontSize="14"
+                    Foreground="{Binding UserNameColor}"
+                    MaxWidth="154"
+                    Text="{Binding UserName}"
+                    TextTrimming="CharacterEllipsis" />
+
+                <TextBlock
+                    FontSize="14"
+                    Foreground="#F1F2F3"
+                    MaxWidth="154"
+                    Opacity=".57"
+                    Text="{Binding Direction}"
+                    TextTrimming="CharacterEllipsis" />
+            </StackPanel>
         </Grid>
     </DataTemplate>
 </ResourceDictionary>

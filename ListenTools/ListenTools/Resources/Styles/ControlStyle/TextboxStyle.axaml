@@ -99,4 +99,91 @@
             </Style>
         </Styles>
     </ControlTheme>
+
+
+    <ControlTheme TargetType="{x:Type TextBox}" x:Key="ChatRoomSearchTextBoxTheme">
+        <Setter Property="Background" Value="#1C1B28" />
+        <Setter Property="Foreground" Value="#F9F9F9" />
+        <Setter Property="Watermark" Value="搜索" />
+        <Setter Property="CornerRadius" Value="20" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Width" Value="216" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="#F9F9F9" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="8"
+                        Height="{TemplateBinding Height}"
+                        Name="Bd"
+                        Opacity="{TemplateBinding Opacity}"
+                        Width="{TemplateBinding Width}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Duration="0:0:0.2"
+                                    Easing="SineEaseInOut"
+                                    Property="BorderBrush" />
+                            </Transitions>
+                        </Border.Transitions>
+                        <Grid ColumnDefinitions="*,Auto">
+                            <ScrollViewer
+                                Grid.Column="0"
+                                HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                                <Panel Margin="18,0,0,0">
+                                    <TextBlock
+                                        Background="Transparent"
+                                        Cursor="Ibeam"
+                                        FontSize="{TemplateBinding FontSize}"
+                                        Foreground="#71767D"
+                                        IsVisible="{TemplateBinding Text,
+                                                                    Converter={x:Static StringConverters.IsNullOrEmpty}}"
+                                        Name="watermark"
+                                        Text="{TemplateBinding Watermark}"
+                                        TextAlignment="{TemplateBinding TextAlignment}"
+                                        TextWrapping="{TemplateBinding TextWrapping}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                    <TextPresenter
+                                        Background="Transparent"
+                                        Cursor="Ibeam"
+                                        Margin="0,0,0,0"
+                                        Name="PART_TextPresenter"
+                                        SelectionBrush="{TemplateBinding SelectionBrush}"
+                                        SelectionEnd="{TemplateBinding SelectionEnd}"
+                                        SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                        SelectionStart="{TemplateBinding SelectionStart}"
+                                        Text="{TemplateBinding Text,
+                                                               Mode=TwoWay}"
+                                        TextAlignment="{TemplateBinding TextAlignment}"
+                                        TextBlock.FontSize="{TemplateBinding FontSize}"
+                                        TextBlock.Foreground="{TemplateBinding Foreground}"
+                                        TextWrapping="{TemplateBinding TextWrapping}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                </Panel>
+                            </ScrollViewer>
+
+                            <Path
+                                Data="{StaticResource SearchIcon}"
+                                Fill="#979797"
+                                Grid.Column="1"
+                                Height="16"
+                                Margin="10,0,20,0"
+                                Stretch="Uniform"
+                                VerticalAlignment="Center"
+                                Width="16" />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
 </ResourceDictionary>

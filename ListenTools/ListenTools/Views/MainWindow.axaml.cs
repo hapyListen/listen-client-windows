@@ -18,7 +18,7 @@ public partial class MainWindow : Window
 
     private void OnLoaded(object? sender, RoutedEventArgs e)
     {
-        this.ViewContent.Content = new RoomListView();
-        
+        // this.ViewContent.Content = new RoomListView();
+        this.ViewContent.Content = new ChatRoomPages.ChatRoomView();
     }
 }

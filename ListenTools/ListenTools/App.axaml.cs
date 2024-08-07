@@ -44,5 +44,6 @@ static class RegisterProvider
     {
         collection.AddSingleton<ViewModels.MainWindowViewModel>();
         collection.AddSingleton<ViewModels.RoomListViewModel>();
+        collection.AddSingleton<ViewModels.ChatRoomViewModels.ChatRoomViewModel>();
     }
 }

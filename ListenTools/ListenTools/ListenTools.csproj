@@ -22,6 +22,8 @@
         <None Remove="Resources\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
         <AvaloniaResource Include="Resources\Fonts\HarmonyOS_Sans_SC_Bold.ttf" />
         <None Remove="Resources\Images\音乐.png" />
+        <None Remove="Resources\Images\chatRoomDefaultBgImage.jpg" />
+        <AvaloniaResource Include="Resources\Images\chatRoomDefaultBgImage.jpg" />
     </ItemGroup>
 
     <ItemGroup>

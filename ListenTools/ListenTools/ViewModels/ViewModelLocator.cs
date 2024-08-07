@@ -35,4 +35,13 @@ public sealed class ViewModelLocator
             return scope.ServiceProvider.GetRequiredService<RoomListViewModel>();
         }
     }
+
+    public ChatRoomViewModels.ChatRoomViewModel ChatRoomVm
+    {
+        get
+        {
+            using var scope = _serviceProvider.CreateScope();
+            return scope.ServiceProvider.GetRequiredService<ChatRoomViewModels.ChatRoomViewModel>();
+        }
+    }
 }
