@@ -88,7 +88,6 @@
         <Setter Property="ClipToBounds" Value="False" />
         <Setter Property="Margin" Value="16,14" />
         <Style Selector="^ /template/ ContentPresenter">
-
             <Setter Property="RenderTransform">
                 <Setter.Value>
                     <ScaleTransform ScaleX="1" ScaleY="1" />

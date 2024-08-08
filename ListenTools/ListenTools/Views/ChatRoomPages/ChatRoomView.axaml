@@ -185,6 +185,29 @@
                 Opacity=".167"
                 Stretch="Fill"
                 UrlSource="avares://ListenTools/Resources/Images/chatRoomDefaultBgImage.jpg" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition
+                        Height="Auto"
+                        MaxHeight="500"
+                        MinHeight="120" />
+                </Grid.RowDefinitions>
+                <ListBox Background="Transparent" Grid.Row="0" />
+
+                <!--  <GridSplitter  -->
+                <!--  Background="#9FA2A7"  -->
+                <!--  BorderThickness="0"  -->
+                <!--  Cursor="SizeNorthSouth"  -->
+                <!--  Grid.Row="1"  -->
+                <!--  Height="1"  -->
+                <!--  HorizontalAlignment="Stretch"  -->
+                <!--  MinHeight="1"  -->
+                <!--  VerticalAlignment="Center" />  -->
+
+                <ucs:SendMessageControl Grid.Row="2" Theme="{StaticResource SendMessageDefaultTheme}" />
+            </Grid>
         </Panel>
 
         <!--  右边成员列表  -->

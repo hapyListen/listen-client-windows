@@ -14,6 +14,10 @@ public sealed class IconButton
         AvaloniaProperty.RegisterAttached<Button, Stretch>("IconStretch", typeof(IconButton),
             defaultValue: Stretch.Uniform);
 
+    public static readonly AttachedProperty<Geometry?> CheckedIconPathProperty = 
+        AvaloniaProperty.RegisterAttached<Button, Geometry?>("CheckedIconPath",typeof(IconButton));
+
+  
     public static Geometry? GetIconPath(Button btn)
     {
         return btn.GetValue(IconButton.IconPathProperty);
@@ -33,13 +37,15 @@ public sealed class IconButton
     {
         btn.SetValue(IconStretchProperty, value);
     }
-
-    static IconButton()
+    
+    public static Geometry? GetCheckedIconPath(Button btn)
     {
-        IconPathProperty.Changed.AddClassHandler<Button>(OnIconPathChanged);
+        return btn.GetValue(CheckedIconPathProperty);
     }
 
-    public static void OnIconPathChanged(Button source, AvaloniaPropertyChangedEventArgs args)
+    public static void SetCheckedIconPath(Button btn, Geometry? path)
     {
+        btn.SetValue(CheckedIconPathProperty, path);
     }
+
 }

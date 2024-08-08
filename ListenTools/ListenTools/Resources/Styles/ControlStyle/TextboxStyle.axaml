@@ -1,5 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
+
+    <!--  主页的搜索框  -->
     <ControlTheme TargetType="TextBox" x:Key="HomeSearchTextBoxTheme">
         <Setter Property="Background" Value="#F9F9F9" />
         <Setter Property="Foreground" Value="#292742" />
@@ -100,10 +102,11 @@
         </Styles>
     </ControlTheme>
 
-
+    <!--  聊天室内的搜索框  -->
     <ControlTheme TargetType="{x:Type TextBox}" x:Key="ChatRoomSearchTextBoxTheme">
         <Setter Property="Background" Value="#1C1B28" />
         <Setter Property="Foreground" Value="#F9F9F9" />
+        <Setter Property="CaretBrush" Value="#F9F9F9" />
         <Setter Property="Watermark" Value="搜索" />
         <Setter Property="CornerRadius" Value="20" />
         <Setter Property="Height" Value="40" />
@@ -154,6 +157,7 @@
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
                                     <TextPresenter
                                         Background="Transparent"
+                                        CaretBrush="{TemplateBinding CaretBrush}"
                                         Cursor="Ibeam"
                                         Margin="0,0,0,0"
                                         Name="PART_TextPresenter"
@@ -186,4 +190,62 @@
             </Setter.Value>
         </Setter>
     </ControlTheme>
+
+
+
+
+    <!--  聊天室的消息编辑框  -->
+    <ControlTheme TargetType="{x:Type TextBox}" x:Key="SendMessageTextboxTheme">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="AcceptsReturn" Value="True" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+        <Setter Property="Foreground" Value="#B9BBBE" />
+        <Setter Property="CaretBrush" Value="#B9BBBE" />
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=Foreground}" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        Height="{TemplateBinding Height}"
+                        HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                        VerticalAlignment="{TemplateBinding VerticalAlignment}"
+                        Width="{TemplateBinding Width}">
+                        <ScrollViewer
+                            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                            Name="PART_ScrollViewer"
+                            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+                            <TextPresenter
+                                CaretBrush="{TemplateBinding CaretBrush}"
+                                Cursor="Ibeam"
+                                Margin="0,0,0,0"
+                                Name="PART_TextPresenter"
+                                SelectionBrush="{TemplateBinding SelectionBrush}"
+                                SelectionEnd="{TemplateBinding SelectionEnd}"
+                                SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                SelectionStart="{TemplateBinding SelectionStart}"
+                                Text="{TemplateBinding Text,
+                                                       Mode=TwoWay}"
+                                TextAlignment="{TemplateBinding TextAlignment}"
+                                TextBlock.FontSize="{TemplateBinding FontSize}"
+                                TextBlock.Foreground="{TemplateBinding Foreground}"
+                                TextWrapping="{TemplateBinding TextWrapping}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        </ScrollViewer>
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </ControlTheme>
+
 </ResourceDictionary>

@@ -2,46 +2,246 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!--  Add Resources Here  -->
-    <ControlTheme TargetType="ucs:SendMessageControl" x:Key="{x:Type ucs:SendMessageControl}">
-        <Setter Property="Background" Value="Transparent" />
+
+    <!--  发送消息区，展开后的Template  -->
+    <ControlTemplate TargetType="{x:Type ucs:SendMessageControl}" x:Key="SendMessageExpandTemplate">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Height="{TemplateBinding Height}"
+            MaxHeight="{TemplateBinding MaxHeight}"
+            MinHeight="{TemplateBinding MinHeight}"
+            Padding="{TemplateBinding Padding}"
+            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+            Width="{TemplateBinding Width}">
+            <Grid RowDefinitions="40,*,Auto">
+                <!--  上面快捷操作栏  -->
+                <DockPanel Grid.Row="0" LastChildFill="False">
+                    <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                        <!--  表情  -->
+                        <Button
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            Margin="0,0,8,0"
+                            Padding="2"
+                            Theme="{StaticResource IconPathButton}"
+                            Width="24"
+                            ucs:IconButton.IconPath="{StaticResource EmojiIcon}" />
+                        <!--  图片  -->
+                        <Button
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            Margin="0,0,8,0"
+                            Padding="2"
+                            Theme="{StaticResource IconPathButton}"
+                            Width="24"
+                            ucs:IconButton.IconPath="{StaticResource ImageIcon}" />
+                        <!--  文件  -->
+                        <Button
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            Margin="0,0,8,0"
+                            Padding="2"
+                            Theme="{StaticResource IconPathButton}"
+                            Width="24"
+                            ucs:IconButton.IconPath="{StaticResource FileIcon}" />
+                        <!--  聊天记录  -->
+                        <Button
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            Margin="0,0,8,0"
+                            Padding="2"
+                            Theme="{StaticResource IconPathButton}"
+                            Width="24"
+                            ucs:IconButton.IconPath="{StaticResource MessageRecordIcon}" />
+                    </StackPanel>
+
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <ToggleButton
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            HorizontalAlignment="Right"
+                            IsChecked="{TemplateBinding IsExpand,
+                                                        Mode=TwoWay}"
+                            Padding="4"
+                            Theme="{StaticResource IconPathToggleButton}"
+                            Width="24"
+                            ucs:IconButton.CheckedIconPath="{StaticResource MessageEditShrink}"
+                            ucs:IconButton.IconPath="{StaticResource MessageEditExpand}" />
+
+                        <Button
+                            Foreground="#9FA2A7"
+                            Height="24"
+                            Margin="4,0,0,0"
+                            Padding="4"
+                            Theme="{StaticResource IconPathButton}"
+                            Width="24"
+                            ucs:IconButton.IconPath="{StaticResource SendMessageIcon}" />
+                    </StackPanel>
+                </DockPanel>
+                <!--  消息编辑区  -->
+                <TextBox
+                    CaretBrush="{TemplateBinding Foreground}"
+                    FontFamily="{TemplateBinding FontFamily}"
+                    FontSize="{TemplateBinding FontSize}"
+                    FontWeight="{TemplateBinding FontWeight}"
+                    Foreground="{TemplateBinding Foreground}"
+                    Grid.Row="1"
+                    Text="{TemplateBinding Message,
+                                           Mode=TwoWay}"
+                    Theme="{StaticResource SendMessageTextboxTheme}" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+    <!--  消息发送区折叠起来的Template，也是默认的模板  -->
+    <ControlTemplate TargetType="{x:Type ucs:SendMessageControl}" x:Key="SendMessageDefaultTemplate">
+        <Border
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            CornerRadius="{TemplateBinding CornerRadius}"
+            Height="{TemplateBinding Height}"
+            MaxHeight="{TemplateBinding MaxHeight}"
+            MinHeight="{TemplateBinding MinHeight}"
+            Padding="{TemplateBinding Padding}"
+            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+            Width="{TemplateBinding Width}">
+            <Grid ColumnDefinitions="Auto,*,Auto" Margin="17,0">
+                <Button
+                    Background="#494C6C"
+                    CornerRadius="10"
+                    Foreground="#9FA2A7"
+                    Grid.Column="0"
+                    Height="20"
+                    Theme="{StaticResource IconPathToggleButton}"
+                    Width="20"
+                    ucs:IconButton.IconPath="{StaticResource AddIcon}">
+                    <Button.Flyout>
+                        <Flyout
+                            FlyoutPresenterTheme="{StaticResource NoneThemeFlyoutPresenter}"
+                            Placement="Top"
+                            PlacementGravity="TopRight"
+                            VerticalOffset="-20">
+                            <Border
+                                Background="#282841"
+                                BoxShadow="0 0 10 0 #494C6C"
+                                CornerRadius="7">
+                                <StackPanel
+                                    Margin="15,12"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                                    <!--  图片  -->
+                                    <Button
+                                        Foreground="#9FA2A7"
+                                        Height="24"
+                                        Margin="0,0,12,0"
+                                        Padding="0"
+                                        Theme="{StaticResource IconPathButton}"
+                                        Width="24"
+                                        ucs:IconButton.IconPath="{StaticResource ImageIcon}" />
+                                    <!--  文件  -->
+                                    <Button
+                                        Foreground="#9FA2A7"
+                                        Height="24"
+                                        Margin="0,0,12,0"
+                                        Padding="0"
+                                        Theme="{StaticResource IconPathButton}"
+                                        Width="24"
+                                        ucs:IconButton.IconPath="{StaticResource FileIcon}" />
+                                    <!--  聊天记录  -->
+                                    <Button
+                                        Foreground="#9FA2A7"
+                                        Height="24"
+                                        Padding="0"
+                                        Theme="{StaticResource IconPathButton}"
+                                        Width="24"
+                                        ucs:IconButton.IconPath="{StaticResource MessageRecordIcon}" />
+                                </StackPanel>
+                            </Border>
+                        </Flyout>
+                    </Button.Flyout>
+                </Button>
+
+                <TextBox
+                    AcceptsReturn="True"
+                    CaretBrush="{TemplateBinding Foreground}"
+                    Grid.Column="1"
+                    Margin="16,0"
+                    Text="{TemplateBinding Message,
+                                           Mode=TwoWay}"
+                    TextWrapping="Wrap"
+                    Theme="{StaticResource SendMessageTextboxTheme}"
+                    VerticalAlignment="Center"
+                    VerticalContentAlignment="Center" />
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button
+                        Foreground="#9FA2A7"
+                        Height="24"
+                        Padding="4"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="24"
+                        ucs:IconButton.IconPath="{StaticResource EmojiIcon}" />
+
+                    <ToggleButton
+                        Foreground="#9FA2A7"
+                        Height="24"
+                        IsChecked="{TemplateBinding IsExpand,
+                                                    Mode=TwoWay}"
+                        Margin="4,0"
+                        Padding="4"
+                        Theme="{StaticResource IconPathToggleButton}"
+                        Width="24"
+                        ucs:IconButton.CheckedIconPath="{StaticResource MessageEditShrink}"
+                        ucs:IconButton.IconPath="{StaticResource MessageEditExpand}" />
+
+                    <Button
+                        Foreground="#9FA2A7"
+                        Height="24"
+                        Padding="4"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="24"
+                        ucs:IconButton.IconPath="{StaticResource SendMessageIcon}" />
+                </StackPanel>
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+
+    <ControlTheme TargetType="ucs:SendMessageControl" x:Key="SendMessageDefaultTheme">
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="UseLayoutRounding" Value="True" />
         <Setter Property="Foreground" Value="#B9BBBE" />
         <Setter Property="FontSize" Value="14" />
-        <Setter Property="Template">
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="Margin" Value="24 0 24 24" />
+        <Setter Property="Height" Value="40" />
+        <Setter Property="Background">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type ucs:SendMessageControl}">
-                    <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        Height="{TemplateBinding Height}"
-                        MaxHeight="{TemplateBinding MaxHeight}"
-                        MinHeight="{TemplateBinding MinHeight}"
-                        Padding="{TemplateBinding Padding}"
-                        UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                        Width="{TemplateBinding Width}">
-                        <Grid RowDefinitions="40,*">
-                            <!--  上面快捷操作栏  -->
-                            <DockPanel Grid.Row="0">
-                                <!--  表情  -->
-                                <Button Content="表情" />
-                                <!--  图片  -->
-                                <Button Content="图片" />
-                                <!--  文件  -->
-                                <Button Content="文件" />
-                                <!--  聊天记录  -->
-                                <Button Content="聊天记录" />
-                            </DockPanel>
-
-
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
+                <SolidColorBrush Color="#292742" Opacity=".85" />
             </Setter.Value>
         </Setter>
+        <Setter Property="Transitions">
+            <Setter.Value>
+                <Transitions>
+                    <DoubleTransition
+                        Duration="0:0:0.168"
+                        Easing="SineEaseInOut"
+                        Property="Height" />
+                </Transitions>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template" Value="{StaticResource SendMessageDefaultTemplate}" />
+
+        <Style Selector="^[IsExpand=True]">
+            <Setter Property="Padding" Value="8 12" />
+            <Setter Property="Height" Value="300" />
+            <Setter Property="Template" Value="{StaticResource SendMessageExpandTemplate}" />
+        </Style>
     </ControlTheme>
+
 </ResourceDictionary>
