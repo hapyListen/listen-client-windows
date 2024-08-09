@@ -5,6 +5,7 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:bdm="clr-namespace:ListenTools.Models.BindingModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:vm="clr-namespace:ListenTools.ViewModels.ChatRoomViewModels"
@@ -124,7 +125,7 @@
                         Theme="{StaticResource IconPathButton}"
                         ToolTip.Tip="房间设置"
                         Width="26"
-                        ucs:IconButton.IconPath="{StaticResource SettingsIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}" />
 
                     <!--  分享房间  -->
                     <Button
@@ -135,7 +136,7 @@
                         Theme="{StaticResource IconPathButton}"
                         ToolTip.Tip="分享房间"
                         Width="26"
-                        ucs:IconButton.IconPath="{StaticResource ShareRoomIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource ShareRoomIcon}" />
 
                     <!--  常驻房间  -->
                     <Button
@@ -146,7 +147,7 @@
                         Theme="{StaticResource IconPathButton}"
                         ToolTip.Tip="常驻房间"
                         Width="26"
-                        ucs:IconButton.IconPath="{StaticResource PermanentIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource PermanentIcon}" />
 
                     <!--  退出房间  -->
                     <Button
@@ -157,7 +158,7 @@
                         Theme="{StaticResource IconPathButton}"
                         ToolTip.Tip="退出房间"
                         Width="26"
-                        ucs:IconButton.IconPath="{StaticResource ExitRoomIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource ExitRoomIcon}" />
 
                     <Rectangle
                         Fill="#9FA2A7"
@@ -185,28 +186,10 @@
                 Opacity=".167"
                 Stretch="Fill"
                 UrlSource="avares://ListenTools/Resources/Images/chatRoomDefaultBgImage.jpg" />
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition
-                        Height="Auto"
-                        MaxHeight="500"
-                        MinHeight="120" />
-                </Grid.RowDefinitions>
+            <Grid RowDefinitions="*,Auto">
                 <ListBox Background="Transparent" Grid.Row="0" />
 
-                <!--  <GridSplitter  -->
-                <!--  Background="#9FA2A7"  -->
-                <!--  BorderThickness="0"  -->
-                <!--  Cursor="SizeNorthSouth"  -->
-                <!--  Grid.Row="1"  -->
-                <!--  Height="1"  -->
-                <!--  HorizontalAlignment="Stretch"  -->
-                <!--  MinHeight="1"  -->
-                <!--  VerticalAlignment="Center" />  -->
-
-                <ucs:SendMessageControl Grid.Row="2" Theme="{StaticResource SendMessageDefaultTheme}" />
+                <ucs:MessageEditControl Grid.Row="1" VerticalAlignment="Bottom" />
             </Grid>
         </Panel>
 

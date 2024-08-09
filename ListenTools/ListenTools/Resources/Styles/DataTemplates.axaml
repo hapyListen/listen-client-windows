@@ -1,6 +1,7 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
     xmlns:bindingModels="clr-namespace:ListenTools.Models.BindingModels"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:img="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
@@ -91,8 +92,8 @@
                         Theme="{StaticResource IconPathButton}"
                         VerticalAlignment="Center"
                         Width="20"
-                        ucs:IconButton.IconPath="{StaticResource JoinRoomIcon}"
-                        ucs:IconButton.IconStretch="UniformToFill" />
+                        ext:ButtonExtend.IconPath="{StaticResource JoinRoomIcon}"
+                        ext:ButtonExtend.IconStretch="UniformToFill" />
                 </Grid>
             </Border>
 

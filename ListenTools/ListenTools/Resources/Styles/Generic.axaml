@@ -19,7 +19,7 @@
                     BorderBrush="{TemplateBinding BorderBrush}"
                     BorderThickness="{TemplateBinding BorderThickness}"
                     ClipToBounds="{TemplateBinding ClipToBounds}"
-                    CornerRadius="{TemplateBinding CornerRadius}"
+                    CornerRadius="4"
                     Name="LayoutRoot"
                     Padding="{DynamicResource FlyoutBorderThemePadding}">
                     <ScrollViewer

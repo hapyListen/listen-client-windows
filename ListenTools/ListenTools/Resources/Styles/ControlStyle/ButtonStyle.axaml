@@ -1,9 +1,10 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!--  Add Resources Here  -->
+    <!--  IconPathButton  -->
     <ControlTheme TargetType="{x:Type Button}" x:Key="IconPathButton">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="#FFFFFF" />
@@ -13,7 +14,11 @@
         <Setter Property="CornerRadius" Value="4" />
         <Setter Property="Cursor" Value="Hand" />
         <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="ucs:IconButton.IconStretch" Value="Uniform" />
+        <Setter Property="ext:ButtonExtend.IconStretch" Value="Uniform" />
+        <Setter Property="ext:ElementExtend.PointOverBackground" Value="{Binding Path=$self.Background}" />
+        <Setter Property="ext:ElementExtend.PointOverForeground" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="ext:ElementExtend.PressedBackground" Value="{Binding Path=$self.(ext:ElementExtend.PointOverBackground)}" />
+        <Setter Property="ext:ElementExtend.PressedForeground" Value="{Binding Path=$self.(ext:ElementExtend.PointOverForeground)}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
@@ -27,10 +32,18 @@
                         Padding="{TemplateBinding Padding}"
                         RenderTransformOrigin="50%,50%"
                         Width="{TemplateBinding Width}">
+                        <Border.Transitions>
+                            <Transitions>
+                                <BrushTransition
+                                    Duration="0:0:0.167"
+                                    Easing="SineEaseInOut"
+                                    Property="Background" />
+                            </Transitions>
+                        </Border.Transitions>
                         <Path
-                            Data="{TemplateBinding ucs:IconButton.IconPath}"
+                            Data="{TemplateBinding ext:ButtonExtend.IconPath}"
                             Fill="{TemplateBinding Foreground}"
-                            Stretch="{TemplateBinding ucs:IconButton.IconStretch}"
+                            Stretch="{TemplateBinding ext:ButtonExtend.IconStretch}"
                             UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
                             <Path.Transitions>
                                 <Transitions>
@@ -48,12 +61,19 @@
 
         <Style Selector="^:pointerover">
             <Style Selector="^ /template/ Path">
-                <Setter Property="Fill" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="Fill" Value="{TemplateBinding ext:ElementExtend.PointOverForeground}" />
+            </Style>
+            <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{TemplateBinding ext:ElementExtend.PointOverBackground}" />
             </Style>
         </Style>
 
         <Style Selector="^:pressed">
+            <Style Selector="^ /template/ Path">
+                <Setter Property="Fill" Value="{TemplateBinding ext:ElementExtend.PressedForeground}" />
+            </Style>
             <Style Selector="^ /template/ Border">
+                <Setter Property="Background" Value="{TemplateBinding ext:ElementExtend.PressedBackground}" />
                 <Setter Property="RenderTransform">
                     <Setter.Value>
                         <ScaleTransform ScaleX="0.97" ScaleY="0.97" />
@@ -63,68 +83,15 @@
         </Style>
     </ControlTheme>
 
-    <ControlTheme TargetType="{x:Type Button}" x:Key="IconPathToggleButton">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="Foreground" Value="#FFFFFF" />
-        <Setter Property="Padding" Value="4" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="CornerRadius" Value="4" />
-        <Setter Property="Cursor" Value="Hand" />
-        <Setter Property="UseLayoutRounding" Value="True" />
-        <Setter Property="ucs:IconButton.IconStretch" Value="Uniform" />
-        <Setter Property="ucs:IconButton.CheckedIconPath" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ucs:IconButton.IconPath)}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type Button}">
-                    <Border
-                        Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        ClipToBounds="{TemplateBinding ClipToBounds}"
-                        CornerRadius="{TemplateBinding CornerRadius}"
-                        Height="{TemplateBinding Height}"
-                        Padding="{TemplateBinding Padding}"
-                        RenderTransformOrigin="50%,50%"
-                        Width="{TemplateBinding Width}">
-                        <Path
-                            Data="{TemplateBinding ucs:IconButton.IconPath}"
-                            Fill="{TemplateBinding Foreground}"
-                            Stretch="{TemplateBinding ucs:IconButton.IconStretch}"
-                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-                            <Path.Transitions>
-                                <Transitions>
-                                    <BrushTransition
-                                        Duration="0:0:0.167"
-                                        Easing="SineEaseInOut"
-                                        Property="Fill" />
-                                </Transitions>
-                            </Path.Transitions>
-                        </Path>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style Selector="^:pointerover">
-            <Style Selector="^ /template/ Path">
-                <Setter Property="Fill" Value="{StaticResource PrimaryColor}" />
-            </Style>
-        </Style>
-
+    <!--  IconToggleButton  -->
+    <ControlTheme
+        BasedOn="{StaticResource IconPathButton}"
+        TargetType="{x:Type ToggleButton}"
+        x:Key="IconPathToggleButton">
+        <Setter Property="ext:ButtonExtend.CheckedIconPath" Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=(ext:ButtonExtend.IconPath)}" />
         <Style Selector="^:checked">
             <Style Selector="^ /template/ Path">
-                <Setter Property="Data" Value="{TemplateBinding ucs:IconButton.CheckedIconPath}" />
-            </Style>
-        </Style>
-
-        <Style Selector="^:pressed">
-            <Style Selector="^ /template/ Border">
-                <Setter Property="RenderTransform">
-                    <Setter.Value>
-                        <ScaleTransform ScaleX="0.97" ScaleY="0.97" />
-                    </Setter.Value>
-                </Setter>
+                <Setter Property="Data" Value="{TemplateBinding ext:ButtonExtend.CheckedIconPath}" />
             </Style>
         </Style>
     </ControlTheme>

@@ -14,6 +14,7 @@
     x:DataType="vm:MainWindowViewModel"
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:local="clr-namespace:ListenTools.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
@@ -66,7 +67,7 @@
                         Padding="0"
                         Theme="{StaticResource IconPathButton}"
                         Width="32"
-                        ucs:IconButton.IconPath="{StaticResource FreeMP3Icon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource FreeMP3Icon}" />
 
                     <Button
                         ClipToBounds="True"
@@ -77,7 +78,7 @@
                         Padding="0"
                         Theme="{StaticResource IconPathButton}"
                         Width="32"
-                        ucs:IconButton.IconPath="{StaticResource NeteasyMusicIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource NeteasyMusicIcon}" />
 
                     <Button
                         ClipToBounds="True"
@@ -88,7 +89,7 @@
                         Padding="0"
                         Theme="{StaticResource IconPathButton}"
                         Width="32"
-                        ucs:IconButton.IconPath="{StaticResource BiliMusicIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource BiliMusicIcon}" />
                     <Button
                         ClipToBounds="True"
                         Foreground="#969696"
@@ -98,7 +99,7 @@
                         Padding="0"
                         Theme="{StaticResource IconPathButton}"
                         Width="32"
-                        ucs:IconButton.IconPath="{StaticResource ListenMusicRoomIcon}" />
+                        ext:ButtonExtend.IconPath="{StaticResource ListenMusicRoomIcon}" />
                 </StackPanel>
 
                 <ListBox
@@ -115,7 +116,7 @@
                     Padding="0"
                     Theme="{StaticResource IconPathButton}"
                     Width="24"
-                    ucs:IconButton.IconPath="{StaticResource SettingsIcon}" />
+                    ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}" />
             </Grid>
         </Border>
 

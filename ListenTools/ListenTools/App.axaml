@@ -17,8 +17,8 @@
                 <ResourceInclude Source="/Resources/Geometries.axaml" />
                 <ResourceInclude Source="/Converters/ConverterDictionary.axaml" />
                 <ResourceInclude Source="/Resources/Styles/DataTemplates.axaml" />
-                <ResourceInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />
                 <ResourceInclude Source="/Resources/Styles/Generic.axaml" />
+                <ResourceInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -4,6 +4,5 @@
         <ResourceInclude Source="ListBoxItemStyle.axaml" />
         <ResourceInclude Source="TextboxStyle.axaml" />
         <ResourceInclude Source="AsyncImageStyle.axaml" />
-        <ResourceInclude Source="SendMessageStyle.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
