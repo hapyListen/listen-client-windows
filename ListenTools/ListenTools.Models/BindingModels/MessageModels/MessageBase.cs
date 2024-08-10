@@ -1,9 +1,9 @@
-using System;
-using Tmds.DBus.Protocol;
+using CommunityToolkit.Mvvm.ComponentModel;
+using ListenTools.Models.Enums;
 
 namespace ListenTools.Models.BindingModels.MessageModels;
 
-public abstract class MessageBase : IMessage
+public class MessageBase 
 {
     /// <summary>
     /// 消息ID (群聊的消息ID由客户端生成，生成规则为：房间ID+用户ID+时间戳+随机生成四位数)
@@ -13,7 +13,18 @@ public abstract class MessageBase : IMessage
     /// <summary>
     /// 消息发送方ID
     /// </summary>
-    public uint MessageSender { get; set; }
+    public uint SenderId { get; set; }
+
+    /// <summary>
+    /// 消息发送方名称
+    /// </summary>
+    public string? SenderName { get; set; }
+
+
+    /// <summary>
+    /// 消息发送方头像
+    /// </summary>
+    public string? SenderHeadImage { get; set; }
 
     /// <summary>
     /// 消息发送时间
@@ -23,15 +34,10 @@ public abstract class MessageBase : IMessage
     /// <summary>
     /// 消息类型
     /// </summary>
-    public MessageType MessageType { get; set; }
+    public MessageFormat MessageFormat { get; protected set; }
 
     /// <summary>
-    /// 是否自己发送的消息
+    /// 消息发送对象
     /// </summary>
-    public bool IsSelf { get; set; }
-
-    public string GetPreview()
-    {
-        return $"[新消息]";
-    }
+    public MessageSender SendFrom { get; set; }
 }

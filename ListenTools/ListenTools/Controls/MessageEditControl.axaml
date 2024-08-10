@@ -4,127 +4,171 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
+    xmlns:localModel="clr-namespace:ListenTools.Models"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <UserControl.Resources>
+        <!--  @的用户名称显示Template  -->
+        <DataTemplate DataType="localModel:AtUserModel" x:Key="AtUserItemTemplate">
+            <Label
+                Background="{StaticResource PrimaryColor2}"
+                CornerRadius="4"
+                Height="30"
+                Margin="4"
+                Padding="8,4">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock
+                        Foreground="{StaticResource TxtForeColor}"
+                        Text="{Binding UserName, StringFormat=@{0}}"
+                        VerticalAlignment="Center" />
+                    <Button
+                        Click="RemoveAtUserButton_OnClick"
+                        DataContext="{Binding .}"
+                        Height="12"
+                        Margin="12,0,0,0"
+                        Padding="0"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="12"
+                        ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}" />
+                </StackPanel>
+            </Label>
+        </DataTemplate>
 
         <!--  发送消息区，展开后的Template  -->
         <ControlTemplate TargetType="{x:Type ucs:MessageEditControl}" x:Key="SendMessageExpandTemplate">
-            <Border
-                Background="{TemplateBinding Background}"
-                BorderBrush="{TemplateBinding BorderBrush}"
-                BorderThickness="{TemplateBinding BorderThickness}"
-                CornerRadius="{TemplateBinding CornerRadius}"
-                Height="300"
-                UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
-                Width="{TemplateBinding Width}">
-                <Grid RowDefinitions="40,*,Auto">
-                    <!--  上面快捷操作栏  -->
-                    <DockPanel Grid.Row="0" LastChildFill="False">
-                        <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                            <!--  表情  -->
-                            <Button
-                                Foreground="#9FA2A7"
-                                Height="24"
-                                Margin="0,0,8,0"
-                                Padding="4"
-                                Theme="{StaticResource IconPathButton}"
-                                Width="24"
-                                ext:ButtonExtend.IconPath="{StaticResource EmojiIcon}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
-                            <!--  文件  -->
-                            <Button
-                                Foreground="#9FA2A7"
-                                Height="24"
-                                Margin="0,0,8,0"
-                                Padding="4"
-                                Theme="{StaticResource IconPathButton}"
-                                Width="24"
-                                ext:ButtonExtend.IconPath="{StaticResource FileIcon}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
-                            <!--  聊天记录  -->
-                            <Button
-                                Foreground="#9FA2A7"
-                                Height="24"
-                                Margin="0,0,8,0"
-                                Padding="4"
-                                Theme="{StaticResource IconPathButton}"
-                                Width="24"
-                                ext:ButtonExtend.IconPath="{StaticResource MessageRecordIcon}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
-                        </StackPanel>
+            <Grid RowDefinitions="Auto,*">
+                <ListBox
+                    Background="Transparent"
+                    Grid.Row="0"
+                    ItemContainerTheme="{StaticResource NoneStyleListBoxItem}"
+                    ItemTemplate="{StaticResource AtUserItemTemplate}"
+                    ItemsSource="{TemplateBinding AtUsers}"
+                    Margin="0,6">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
+                <Border
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Grid.Row="1"
+                    Height="300"
+                    UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                    Width="{TemplateBinding Width}">
+                    <Grid RowDefinitions="40,*,Auto">
+                        <!--  上面快捷操作栏  -->
+                        <DockPanel
+                            Grid.Row="0"
+                            LastChildFill="False"
+                            Margin="17,0">
+                            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                                <!--  表情  -->
+                                <Button
+                                    Foreground="#9FA2A7"
+                                    Height="24"
+                                    Margin="0,0,8,0"
+                                    Padding="4"
+                                    Theme="{StaticResource IconPathButton}"
+                                    Width="24"
+                                    ext:ButtonExtend.IconPath="{StaticResource EmojiIcon}"
+                                    ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}">
+                                    <Button.Flyout>
+                                        <Flyout
+                                            FlyoutPresenterTheme="{StaticResource NoneThemeFlyoutPresenter}"
+                                            Placement="Top"
+                                            VerticalOffset="-20">
+                                            <ucs:EmojiChooseControl x:Name="PART_EmojiChoose" />
+                                        </Flyout>
+                                    </Button.Flyout>
+                                </Button>
+                                <!--  文件  -->
+                                <Button
+                                    Foreground="#9FA2A7"
+                                    Height="24"
+                                    Margin="0,0,8,0"
+                                    Padding="4"
+                                    Theme="{StaticResource IconPathButton}"
+                                    Width="24"
+                                    ext:ButtonExtend.IconPath="{StaticResource FileIcon}"
+                                    ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
+                                <!--  聊天记录  -->
+                                <Button
+                                    Foreground="#9FA2A7"
+                                    Height="24"
+                                    Margin="0,0,8,0"
+                                    Padding="4"
+                                    Theme="{StaticResource IconPathButton}"
+                                    Width="24"
+                                    ext:ButtonExtend.IconPath="{StaticResource MessageRecordIcon}"
+                                    ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
+                            </StackPanel>
 
-                        <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
-                            <!--  折叠按钮  -->
-                            <ToggleButton
-                                Foreground="#9FA2A7"
-                                Height="24"
-                                HorizontalAlignment="Right"
-                                IsChecked="{TemplateBinding IsExpand,
-                                                            Mode=TwoWay}"
-                                Padding="4"
-                                Theme="{StaticResource IconPathToggleButton}"
-                                Width="24"
-                                ext:ButtonExtend.CheckedIconPath="{StaticResource MessageEditShrink}"
-                                ext:ButtonExtend.IconPath="{StaticResource MessageEditExpand}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
+                            <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                                <!--  折叠按钮  -->
+                                <ToggleButton
+                                    Foreground="#9FA2A7"
+                                    Height="24"
+                                    HorizontalAlignment="Right"
+                                    IsChecked="{TemplateBinding IsExpand,
+                                                                Mode=TwoWay}"
+                                    Padding="4"
+                                    Theme="{StaticResource IconPathToggleButton}"
+                                    Width="24"
+                                    ext:ButtonExtend.CheckedIconPath="{StaticResource MessageEditShrink}"
+                                    ext:ButtonExtend.IconPath="{StaticResource MessageEditExpand}"
+                                    ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
 
-                            <!--  消息发送按钮  -->
-                            <Button
-                                Foreground="#9FA2A7"
-                                Height="24"
-                                Margin="4,0,0,0"
-                                Padding="4"
-                                Theme="{StaticResource IconPathButton}"
-                                Width="24"
-                                ext:ButtonExtend.IconPath="{StaticResource SendMessageIcon}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
-                        </StackPanel>
-                    </DockPanel>
-                    <!--  消息编辑区  -->
-                    <TextBox
-                        CaretBrush="{TemplateBinding Foreground}"
-                        FontFamily="{TemplateBinding FontFamily}"
-                        FontSize="{TemplateBinding FontSize}"
-                        FontWeight="{TemplateBinding FontWeight}"
-                        Foreground="{TemplateBinding Foreground}"
-                        Grid.Row="1"
-                        Text="{TemplateBinding Message,
-                                               Mode=TwoWay}"
-                        Theme="{StaticResource SendMessageTextboxTheme}"
-                        x:Name="PART_MessageBox" />
-                </Grid>
-            </Border>
+                                <!--  消息发送按钮  -->
+                                <Button
+                                    Foreground="#9FA2A7"
+                                    Height="24"
+                                    Margin="4,0,0,0"
+                                    Padding="4"
+                                    Theme="{StaticResource IconPathButton}"
+                                    Width="24"
+                                    ext:ButtonExtend.IconPath="{StaticResource SendMessageIcon}"
+                                    ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
+                            </StackPanel>
+                        </DockPanel>
+                        <!--  消息编辑区  -->
+                        <TextBox
+                            CaretBrush="{TemplateBinding Foreground}"
+                            FontFamily="{TemplateBinding FontFamily}"
+                            FontSize="{TemplateBinding FontSize}"
+                            FontWeight="{TemplateBinding FontWeight}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Grid.Row="1"
+                            Padding="8,12"
+                            Text="{TemplateBinding Message,
+                                                   Mode=TwoWay}"
+                            Theme="{StaticResource SendMessageTextboxTheme}"
+                            x:Name="PART_MessageBox" />
+                    </Grid>
+                </Border>
+            </Grid>
         </ControlTemplate>
 
         <!--  消息发送区折叠起来的Template，也是默认的模板  -->
         <ControlTemplate TargetType="{x:Type ucs:MessageEditControl}" x:Key="SendMessageDefaultTemplate">
             <Grid RowDefinitions="Auto,*">
-                <WrapPanel
+                <ListBox
+                    Background="Transparent"
                     Grid.Row="0"
-                    Margin="0,6"
-                    Orientation="Horizontal">
-                    <Label
-                        Background="{StaticResource PrimaryColor2}"
-                        CornerRadius="4"
-                        Height="30"
-                        Padding="8,4">
-                        <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <TextBlock
-                                Foreground="{StaticResource TxtForeColor}"
-                                Text="@眉上风止"
-                                VerticalAlignment="Center" />
-                            <Button
-                                Height="12"
-                                Margin="12,0,0,0"
-                                Padding="0"
-                                Theme="{StaticResource IconPathButton}"
-                                Width="12"
-                                ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}" />
-                        </StackPanel>
-                    </Label>
-                </WrapPanel>
+                    ItemContainerTheme="{StaticResource NoneStyleListBoxItem}"
+                    ItemTemplate="{StaticResource AtUserItemTemplate}"
+                    ItemsSource="{TemplateBinding AtUsers}"
+                    Margin="0,6">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal" />
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                </ListBox>
                 <Border
                     Background="{TemplateBinding Background}"
                     BorderBrush="{TemplateBinding BorderBrush}"
@@ -160,7 +204,7 @@
                                                 Foreground="#9FA2A7"
                                                 Height="24"
                                                 Margin="0,0,12,0"
-                                                Padding="2"
+                                                Padding="4"
                                                 Theme="{StaticResource IconPathButton}"
                                                 Width="24"
                                                 ext:ButtonExtend.IconPath="{StaticResource FileIcon}"
@@ -169,7 +213,7 @@
                                             <Button
                                                 Foreground="#9FA2A7"
                                                 Height="24"
-                                                Padding="2"
+                                                Padding="4"
                                                 Theme="{StaticResource IconPathButton}"
                                                 Width="24"
                                                 ext:ButtonExtend.IconPath="{StaticResource MessageRecordIcon}"
@@ -199,7 +243,16 @@
                                 Theme="{StaticResource IconPathButton}"
                                 Width="24"
                                 ext:ButtonExtend.IconPath="{StaticResource EmojiIcon}"
-                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}" />
+                                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush50}">
+                                <Button.Flyout>
+                                    <Flyout
+                                        FlyoutPresenterTheme="{StaticResource NoneThemeFlyoutPresenter}"
+                                        Placement="Top"
+                                        VerticalOffset="-20">
+                                        <ucs:EmojiChooseControl x:Name="PART_EmojiChoose" />
+                                    </Flyout>
+                                </Button.Flyout>
+                            </Button>
 
                             <ToggleButton
                                 Foreground="#9FA2A7"
@@ -228,6 +281,7 @@
             </Grid>
         </ControlTemplate>
     </UserControl.Resources>
+
     <UserControl.Styles>
         <Style Selector="ucs|MessageEditControl">
             <Setter Property="BorderBrush" Value="Transparent" />
@@ -257,7 +311,6 @@
         </Style>
 
         <Style Selector="ucs|MessageEditControl[IsExpand=True]">
-            <Setter Property="Padding" Value="8 12" />
             <Setter Property="Template" Value="{StaticResource SendMessageExpandTemplate}" />
         </Style>
     </UserControl.Styles>

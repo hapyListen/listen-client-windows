@@ -1,0 +1,96 @@
+<UserControl
+    mc:Ignorable="d"
+    x:Class="ListenTools.Controls.EmojiChooseControl"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:ListenTools.Controls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ListenTools.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <UserControl.Resources>
+        <!--  表情包选择按钮  -->
+        <ControlTheme TargetType="{x:Type Button}" x:Key="EmojiButtonTheme">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Width" Value="32" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Transitions">
+                <Setter.Value>
+                    <Transitions>
+                        <TransformOperationsTransition
+                            Duration="0:0:0.15"
+                            Easing="SineEaseInOut"
+                            Property="RenderTransform" />
+                    </Transitions>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Cursor="{TemplateBinding Cursor}"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"
+                            x:Name="Bd">
+                            <ContentPresenter Content="{TemplateBinding Content}" Margin="4" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style Selector="^:pointerover">
+                <Setter Property="Background" Value="{StaticResource PrimaryBrush50}" />
+                <Setter Property="RenderTransform" Value="scale(1.2)" />
+            </Style>
+        </ControlTheme>
+    </UserControl.Resources>
+    <UserControl.Styles>
+        <Style Selector="local|EmojiChooseControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type local:EmojiChooseControl}">
+                        <Border
+                            Background="{StaticResource PrimaryBrush70}"
+                            CornerRadius="10"
+                            MaxHeight="260"
+                            Padding="14"
+                            Width="300">
+                            <ListBox
+                                Background="Transparent"
+                                ItemContainerTheme="{StaticResource NoneStyleListBoxItem}"
+                                ItemsSource="{TemplateBinding EmojiSource,
+                                                              Mode=OneWay}">
+                                <ListBox.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Orientation="Horizontal" />
+                                    </ItemsPanelTemplate>
+                                </ListBox.ItemsPanel>
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate x:DataType="models:EmojiModel">
+                                        <Button
+                                            Click="Button_OnClick"
+                                            Margin="4"
+                                            Tag="{Binding EmojiPath}"
+                                            Theme="{StaticResource EmojiButtonTheme}"
+                                            ToolTip.Tip="{Binding EmojiName}">
+                                            <local:AsyncImage
+                                                Stretch="Uniform"
+                                                UrlSource="{Binding EmojiPath}"
+                                                UseLayoutRounding="True" />
+                                        </Button>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Styles>
+</UserControl>

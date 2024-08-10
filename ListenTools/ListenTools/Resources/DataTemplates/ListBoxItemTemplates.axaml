@@ -1,33 +1,11 @@
 <ResourceDictionary
     xmlns="https://github.com/avaloniaui"
-    xmlns:bindingModels="clr-namespace:ListenTools.Models.BindingModels"
+    xmlns:bindingModels="clr-namespace:ListenTools.Models.BindingModels;assembly=ListenTools.Models"
     xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:img="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
-
-    <!--  主页菜单栏模板  -->
-    <DataTemplate DataType="{x:Type bindingModels:MainMenuItemBdm}" x:Key="MainMenuItemTemplate">
-        <Grid ColumnDefinitions="24,12,*">
-            <Path
-                Data="{Binding Icon}"
-                Fill="{Binding $parent[ContentPresenter].Foreground}"
-                Grid.Column="0"
-                Height="24"
-                Stretch="Uniform"
-                Width="24"
-                x:Name="IconPath" />
-            <TextBlock
-                FontSize="16"
-                FontWeight="Bold"
-                Foreground="{Binding $parent[ContentPresenter].Foreground}"
-                Grid.Column="2"
-                Text="{Binding Title}"
-                VerticalAlignment="Center"
-                x:Name="TitleText" />
-        </Grid>
-    </DataTemplate>
 
     <!--  首页热门房间模板  -->
     <DataTemplate DataType="{x:Type bindingModels:RoomCardBdm}" x:Key="HotRoomCardTemplate">
@@ -144,7 +122,7 @@
     </DataTemplate>
 
     <!--  房间内的用户列表模板  -->
-    <DataTemplate DataType="{x:Type bindingModels:ChatRoomUserBdm}" x:Key="ChatRoomUsersItemTemplate">
+    <DataTemplate DataType="{x:Type bindingModels:UserInfoBdm}" x:Key="ChatRoomUsersItemTemplate">
         <Grid Background="Transparent" ColumnDefinitions="36,12,*">
             <Panel Grid.Column="0">
                 <ucs:AsyncImage Stretch="Uniform" UrlSource="{Binding HeadImage}" />

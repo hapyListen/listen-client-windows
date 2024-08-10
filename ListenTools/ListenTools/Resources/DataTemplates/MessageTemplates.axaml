@@ -1,0 +1,13 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:msgModels="clr-namespace:ListenTools.Models.BindingModels.MessageModels;assembly=ListenTools.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  自己发送的消息模板  -->
+    <DataTemplate DataType="{x:Type msgModels:MessageBase}" x:Key="SelfMessageTemplate" />
+
+    <!--  其他人发送消息模板  -->
+    <DataTemplate DataType="{x:Type msgModels:MessageBase}" x:Key="OtherUserMessageTemplate" />
+
+    <!--  系统推送的消息模板  -->
+    <DataTemplate DataType="{x:Type msgModels:MessageBase}" x:Key="SystemMessageTemplate" />
+</ResourceDictionary>

@@ -6,11 +6,34 @@
     xmlns="https://github.com/avaloniaui"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:models="clr-namespace:ListenTools.Models"
     xmlns:vm="clr-namespace:ListenTools.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <Design.DataContext>
         <vm:RoomListViewModel />
     </Design.DataContext>
+    <UserControl.DataTemplates>
+        <DataTemplate DataType="{x:Type models:MainMenuItemBdm}">
+            <Grid ColumnDefinitions="24,12,*">
+                <Path
+                    Data="{Binding Icon}"
+                    Fill="{Binding $parent[ContentPresenter].Foreground}"
+                    Grid.Column="0"
+                    Height="24"
+                    Stretch="Uniform"
+                    Width="24"
+                    x:Name="IconPath" />
+                <TextBlock
+                    FontSize="16"
+                    FontWeight="Bold"
+                    Foreground="{Binding $parent[ContentPresenter].Foreground}"
+                    Grid.Column="2"
+                    Text="{Binding Title}"
+                    VerticalAlignment="Center"
+                    x:Name="TitleText" />
+            </Grid>
+        </DataTemplate>
+    </UserControl.DataTemplates>
     <Grid ColumnDefinitions="240,*">
         <Border
             Background="#292742"
@@ -32,7 +55,6 @@
                     <ListBox
                         Background="Transparent"
                         ItemContainerTheme="{StaticResource MainMenuItemStyle}"
-                        ItemTemplate="{StaticResource MainMenuItemTemplate}"
                         ItemsSource="{Binding MainMenuSource}" />
                 </StackPanel>
 

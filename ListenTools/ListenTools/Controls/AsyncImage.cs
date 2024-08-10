@@ -12,6 +12,7 @@ using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 using Avalonia.Threading;
 using AvaloniaGif;
+using ListenTools.Global;
 using ListenTools.Helper;
 
 namespace ListenTools.Controls;
@@ -403,6 +404,7 @@ public class AsyncImage : TemplatedControl
                 this._staticImage = new Image()
                 {
                     Source = source,
+                    [!Image.UseLayoutRoundingProperty] = this[!AsyncImage.UseLayoutRoundingProperty],
                     [!Image.StretchProperty] = this[!AsyncImage.StretchProperty]
                 };
             else

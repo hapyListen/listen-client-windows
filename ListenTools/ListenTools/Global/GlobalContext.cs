@@ -2,7 +2,7 @@ using System;
 using System.Net.Http;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace ListenTools;
+namespace ListenTools.Global;
 
 public class GlobalContext
 {
@@ -48,6 +48,18 @@ public class GlobalContext
     {
         using var scope = _serviceProvider.CreateScope();
         return scope.ServiceProvider.GetRequiredService<T>();
+    }
+
+    /// <summary>
+    /// 当前登录的用户信息
+    /// </summary>
+    public Models.BindingModels.UserInfoBdm CurrentUser
+    {
+        get
+        {
+            using var scope = _serviceProvider.CreateScope();
+            return scope.ServiceProvider.GetRequiredService<Models.BindingModels.UserInfoBdm>();
+        }
     }
 
     #endregion

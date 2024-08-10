@@ -24,27 +24,195 @@
         <None Remove="Resources\Images\音乐.png" />
         <None Remove="Resources\Images\chatRoomDefaultBgImage.jpg" />
         <AvaloniaResource Include="Resources\Images\chatRoomDefaultBgImage.jpg" />
+        <None Remove="Resources\Images\Emoji\-confused.png" />
+        <None Remove="Resources\Images\Emoji\-cool.png" />
+        <None Remove="Resources\Images\Emoji\-cool-.png" />
+        <None Remove="Resources\Images\Emoji\-cry.png" />
+        <None Remove="Resources\Images\Emoji\-cry-.png" />
+        <None Remove="Resources\Images\Emoji\-devil.png" />
+        <None Remove="Resources\Images\Emoji\-dizzy.png" />
+        <None Remove="Resources\Images\Emoji\-expressionless.png" />
+        <None Remove="Resources\Images\Emoji\-flushed.png" />
+        <None Remove="Resources\Images\Emoji\-happy.png" />
+        <None Remove="Resources\Images\Emoji\-happy-.png" />
+        <None Remove="Resources\Images\Emoji\-happy-_1.png" />
+        <None Remove="Resources\Images\Emoji\-in-love.png" />
+        <None Remove="Resources\Images\Emoji\-injury.png" />
+        <None Remove="Resources\Images\Emoji\-joy.png" />
+        <None Remove="Resources\Images\Emoji\-kiss.png" />
+        <None Remove="Resources\Images\Emoji\-kiss-.png" />
+        <None Remove="Resources\Images\Emoji\-kiss-_1.png" />
+        <None Remove="Resources\Images\Emoji\-mask.png" />
+        <None Remove="Resources\Images\Emoji\-mute.png" />
+        <None Remove="Resources\Images\Emoji\-neutral.png" />
+        <None Remove="Resources\Images\Emoji\-sad.png" />
+        <None Remove="Resources\Images\Emoji\-sad-.png" />
+        <None Remove="Resources\Images\Emoji\-scared.png" />
+        <None Remove="Resources\Images\Emoji\-scared-.png" />
+        <None Remove="Resources\Images\Emoji\-secret.png" />
+        <None Remove="Resources\Images\Emoji\-shocked.png" />
+        <None Remove="Resources\Images\Emoji\-sick.png" />
+        <None Remove="Resources\Images\Emoji\-sleeping.png" />
+        <None Remove="Resources\Images\Emoji\-smile.png" />
+        <None Remove="Resources\Images\Emoji\-smile-.png" />
+        <None Remove="Resources\Images\Emoji\-smiling.png" />
+        <None Remove="Resources\Images\Emoji\-smiling-.png" />
+        <None Remove="Resources\Images\Emoji\-smirking.png" />
+        <None Remove="Resources\Images\Emoji\-surprised.png" />
+        <None Remove="Resources\Images\Emoji\-sweat.png" />
+        <None Remove="Resources\Images\Emoji\-thinking.png" />
+        <None Remove="Resources\Images\Emoji\-tired.png" />
+        <None Remove="Resources\Images\Emoji\-tongue.png" />
+        <None Remove="Resources\Images\Emoji\-tongue-.png" />
+        <None Remove="Resources\Images\Emoji\-tongue-_1.png" />
+        <None Remove="Resources\Images\Emoji\-unamused.png" />
+        <None Remove="Resources\Images\Emoji\-vomiting.png" />
+        <None Remove="Resources\Images\Emoji\-vomiting-.png" />
+        <None Remove="Resources\Images\Emoji\-wink.png" />
+        <None Remove="Resources\Images\Emoji\-zombie.png" />
+        <None Remove="Resources\Images\Emoji\[emoji-angel].png" />
+        <None Remove="Resources\Images\Emoji\[emoji-angry].png" />
+        <None Remove="Resources\Images\Emoji\[emoji-astonished2].png" />
+        <None Remove="Resources\Images\Emoji\[emoji-astonished].png" />
+        <None Remove="Resources\Images\Emoji\Tips\zh_cn" />
+        <AvaloniaResource Include="Resources\Images\Emoji\Docs\tips_zh_cn" />
+        <None Remove="Resources\Images\Emoji\emoji-angel.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-angel.png" />
+        <None Remove="Resources\Images\Emoji\emoji-angry.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-angry.png" />
+        <None Remove="Resources\Images\Emoji\emoji-astonished.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-astonished.png" />
+        <None Remove="Resources\Images\Emoji\emoji-astonished2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-astonished2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-confused.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-confused.png" />
+        <None Remove="Resources\Images\Emoji\emoji-cool.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-cool.png" />
+        <None Remove="Resources\Images\Emoji\emoji-cool2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-cool2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-cry.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-cry.png" />
+        <None Remove="Resources\Images\Emoji\emoji-cry2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-cry2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-devil.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-devil.png" />
+        <None Remove="Resources\Images\Emoji\emoji-dizzy.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-dizzy.png" />
+        <None Remove="Resources\Images\Emoji\emoji-expressionless.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-expressionless.png" />
+        <None Remove="Resources\Images\Emoji\emoji-flushed.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-flushed.png" />
+        <None Remove="Resources\Images\Emoji\emoji-happy.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-happy.png" />
+        <None Remove="Resources\Images\Emoji\emoji-happy2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-happy2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-happy3.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-happy3.png" />
+        <None Remove="Resources\Images\Emoji\emoji-injury.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-injury.png" />
+        <None Remove="Resources\Images\Emoji\emoji-inlove.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-inlove.png" />
+        <None Remove="Resources\Images\Emoji\emoji-joy.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-joy.png" />
+        <None Remove="Resources\Images\Emoji\emoji-kiss.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-kiss.png" />
+        <None Remove="Resources\Images\Emoji\emoji-kiss2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-kiss2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-kiss3.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-kiss3.png" />
+        <None Remove="Resources\Images\Emoji\emoji-mask.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-mask.png" />
+        <None Remove="Resources\Images\Emoji\emoji-mute.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-mute.png" />
+        <None Remove="Resources\Images\Emoji\emoji-neutral.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-neutral.png" />
+        <None Remove="Resources\Images\Emoji\emoji-sad.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-sad.png" />
+        <None Remove="Resources\Images\Emoji\emoji-sad2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-sad2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-scared.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-scared.png" />
+        <None Remove="Resources\Images\Emoji\emoji-scared2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-scared2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-secret.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-secret.png" />
+        <None Remove="Resources\Images\Emoji\emoji-shocked.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-shocked.png" />
+        <None Remove="Resources\Images\Emoji\emoji-sick.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-sick.png" />
+        <None Remove="Resources\Images\Emoji\emoji-sleeping.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-sleeping.png" />
+        <None Remove="Resources\Images\Emoji\emoji-smile.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-smile.png" />
+        <None Remove="Resources\Images\Emoji\emoji-smile2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-smile2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-smiling.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-smiling.png" />
+        <None Remove="Resources\Images\Emoji\emoji-smiling2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-smiling2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-smirking.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-smirking.png" />
+        <None Remove="Resources\Images\Emoji\emoji-surprised.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-surprised.png" />
+        <None Remove="Resources\Images\Emoji\emoji-sweat.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-sweat.png" />
+        <None Remove="Resources\Images\Emoji\emoji-thinking.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-thinking.png" />
+        <None Remove="Resources\Images\Emoji\emoji-tired.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-tired.png" />
+        <None Remove="Resources\Images\Emoji\emoji-tongue.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-tongue.png" />
+        <None Remove="Resources\Images\Emoji\emoji-tongue2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-tongue2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-tongue3.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-tongue3.png" />
+        <None Remove="Resources\Images\Emoji\emoji-unamused.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-unamused.png" />
+        <None Remove="Resources\Images\Emoji\emoji-vomiting.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-vomiting.png" />
+        <None Remove="Resources\Images\Emoji\emoji-vomiting2.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-vomiting2.png" />
+        <None Remove="Resources\Images\Emoji\emoji-wink.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-wink.png" />
+        <None Remove="Resources\Images\Emoji\emoji-zombie.png" />
+        <AvaloniaResource Include="Resources\Images\Emoji\emoji-zombie.png" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="AsyncImageLoader.Avalonia" Version="3.2.1" />
-        <PackageReference Include="Avalonia" Version="11.0.10"/>
-        <PackageReference Include="Avalonia.Desktop" Version="11.0.10"/>
-        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10"/>
-        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10"/>
+        <PackageReference Include="Avalonia" Version="11.1.2" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.1.2" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.1.2" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.2" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10"/>
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.2" />
         <PackageReference Include="Avalonia_Gif" Version="1.0.0" />
-        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1"/>
+        <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.6.24327.7" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0-preview.6.24327.7" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\ListenTools.Media\ListenTools.Media.csproj" />
+      <ProjectReference Include="..\ListenTools.Models\ListenTools.Models.csproj" />
     </ItemGroup>
 
     <ItemGroup>
       <UpToDateCheckInput Remove="Assets\avalonia-logo.ico" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Resources\Languages\zh_cn.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>zh_cn.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Resources\Languages\zh_cn.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>zh_cn.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>

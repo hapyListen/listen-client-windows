@@ -2,6 +2,7 @@
     RequestedThemeVariant="Default"
     x:Class="ListenTools.App"
     xmlns="https://github.com/avaloniaui"
+    xmlns:global="clr-namespace:ListenTools.Global"
     xmlns:vm="clr-namespace:ListenTools.ViewModels"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options.  -->
@@ -9,14 +10,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <vm:ViewModelLocator x:Key="VmLocator" />
+            <!--  鸿蒙OS  -->
             <FontFamily x:Key="HarmonyOsFont">avares://ListenTools/Resources/Fonts/HarmonyOS_Sans_SC_Regular.ttf#HarmonyOS Sans SC</FontFamily>
+            <!--  鸿蒙OS加粗  -->
             <FontFamily x:Key="HarmonyOsBoldFont">avares://ListenTools/Resources/Fonts/HarmonyOS_Sans_SC_Bold.ttf#HarmonyOS Sans SC</FontFamily>
+            <!--  思源黑体  -->
             <FontFamily x:Key="SourceHanFont">avares://ListenTools/Resources/Fonts/SourceHanSansCN-Regular.ttf#Source Han Sans CN</FontFamily>
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Resources/Themes/LightTheme.axaml" />
                 <ResourceInclude Source="/Resources/Geometries.axaml" />
                 <ResourceInclude Source="/Converters/ConverterDictionary.axaml" />
-                <ResourceInclude Source="/Resources/Styles/DataTemplates.axaml" />
+                <ResourceInclude Source="/Resources/DataTemplates/AllTemplateDictionary.axaml" />
                 <ResourceInclude Source="/Resources/Styles/Generic.axaml" />
                 <ResourceInclude Source="/Resources/Styles/ControlStyle/ControlDictionary.axaml" />
             </ResourceDictionary.MergedDictionaries>

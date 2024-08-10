@@ -12,13 +12,13 @@ public partial class ChatRoomViewModel : Base.ViewModelBase
     /// <summary>
     /// 房主信息
     /// </summary>
-    [ObservableProperty] private Models.BindingModels.ChatRoomUserBdm? _roomManInfo;
+    [ObservableProperty] private Models.BindingModels.UserInfoBdm? _roomManInfo;
 
 
     /// <summary>
     /// 房间内所有用户信息（不包含房主）
     /// </summary>
-    public IList<Models.BindingModels.ChatRoomUserBdm> UserList { get; } = new ObservableCollection<ChatRoomUserBdm>();
+    public IList<Models.BindingModels.UserInfoBdm> UserList { get; } = new ObservableCollection<UserInfoBdm>();
 
     #endregion
 

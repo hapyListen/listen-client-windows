@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools.Media", "Listen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools.Utils", "ListenTools.Utils\ListenTools.Utils.csproj", "{49B25DB8-B9AA-4F03-A4A5-48A81E687980}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListenTools.Models", "ListenTools.Models\ListenTools.Models.csproj", "{7DB60D3C-3108-4D2B-9562-1A479B3EBF5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{49B25DB8-B9AA-4F03-A4A5-48A81E687980}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DB60D3C-3108-4D2B-9562-1A479B3EBF5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB60D3C-3108-4D2B-9562-1A479B3EBF5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB60D3C-3108-4D2B-9562-1A479B3EBF5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB60D3C-3108-4D2B-9562-1A479B3EBF5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

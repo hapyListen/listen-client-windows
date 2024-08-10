@@ -4,6 +4,7 @@ using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Data.Core;
 using Avalonia.Data.Core.Plugins;
 using Avalonia.Markup.Xaml;
+using ListenTools.Global;
 using ListenTools.ViewModels;
 using ListenTools.Views;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,8 +20,10 @@ public partial class App : Application
         IServiceCollection serviceCollection = new ServiceCollection();
         serviceCollection.AddHttpClient();
         serviceCollection.RegisterViewModel();
+        serviceCollection.AddSingleton(typeof(Models.BindingModels.UserInfoBdm),
+            new Models.BindingModels.UserInfoBdm());
         var provider = serviceCollection.BuildServiceProvider();
-        var vmLocator = this.Resources["VmLocator"] as ViewModels.ViewModelLocator;
+        var vmLocator = this.Resources["VmLocator"] as ViewModelLocator;
         vmLocator?.SetServiceProvider(provider);
 
         GlobalContext.Instance.SetServiceProvider(provider);
