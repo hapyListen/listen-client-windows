@@ -14,6 +14,8 @@
         <Setter Property="SelectionBrush" Value="{StaticResource PrimaryColor}" />
         <Setter Property="SelectionForegroundBrush" Value="{Binding $self.Foreground}" />
         <Setter Property="ext:TextBoxExtend.WaterMarkBrush" Value="{Binding $self.Foreground}" />
+        <Setter Property="ext:TextBoxExtend.FocusedBorderBrush" Value="{Binding $self.BorderBrush}" />
+        <Setter Property="ext:TextBoxExtend.FocusedBorderThickness" Value="{Binding $self.BorderThickness}" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -79,6 +81,29 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+
+        <Style Selector="^:focus /template/ Border#Bd">
+            <Setter Property="BorderBrush" Value="{TemplateBinding ext:TextBoxExtend.FocusedBorderBrush}" />
+            <Setter Property="BorderThickness" Value="{TemplateBinding ext:TextBoxExtend.FocusedBorderThickness}" />
+        </Style>
+    </ControlTheme>
+
+    <!--  默认的文本框样式  -->
+    <ControlTheme
+        BasedOn="{StaticResource TextBoxBase}"
+        TargetType="{x:Type TextBox}"
+        x:Key="DefaultTextBox">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Background" Value="#F9F9F9" />
+        <Setter Property="Foreground" Value="#292742" />
+        <Setter Property="CornerRadius" Value="6" />
+        <Setter Property="BorderBrush" Value="#F0F0F0" />
+        <Setter Property="Padding" Value="4 2" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="SelectionBrush" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="SelectionForegroundBrush" Value="#F9F9F9" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="ext:TextBoxExtend.FocusedBorderBrush" Value="{StaticResource PrimaryColor}" />
     </ControlTheme>
 
     <!--  主页的搜索框  -->

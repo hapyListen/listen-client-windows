@@ -11,7 +11,7 @@
                 ClipToBounds="False"
                 ColumnDefinitions="36,12,*">
                 <Panel Grid.Column="0">
-                    <ucs:AsyncImage
+                    <ucs:NetImage
                         CornerRadius="22"
                         Stretch="Uniform"
                         UrlSource="{Binding HeadImage}" />
@@ -48,7 +48,7 @@
                         Foreground="#F1F2F3"
                         MaxWidth="154"
                         Opacity=".57"
-                        Text="{Binding Direction}"
+                        Text="{Binding Summary}"
                         TextTrimming="CharacterEllipsis" />
                 </StackPanel>
             </Grid>

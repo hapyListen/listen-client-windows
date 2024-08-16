@@ -34,10 +34,11 @@
             </Grid>
         </DataTemplate>
     </UserControl.DataTemplates>
-    <Grid ColumnDefinitions="240,*">
+    <Grid ColumnDefinitions="Auto,*">
         <Border
             Background="#292742"
             Grid.Column="0"
+            IsVisible="False"
             Padding="12"
             Width="240">
             <Grid RowDefinitions="Auto,*,Auto">
@@ -89,7 +90,6 @@
 
             </Grid>
         </Border>
-
 
         <Grid
             ClipToBounds="False"

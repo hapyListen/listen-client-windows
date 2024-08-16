@@ -1,0 +1,189 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ControlTheme TargetType="Thumb" x:Key="FluentScrollBarThumb">
+        <Setter Property="IsTabStop" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <!--  <Border  -->
+                    <!--  Background="{TemplateBinding Background}"  -->
+                    <!--  CornerRadius="{TemplateBinding CornerRadius}"  -->
+                    <!--  Height="{TemplateBinding Height}"  -->
+                    <!--  Width="{TemplateBinding Width}" />  -->
+                    <Rectangle
+                        Fill="#5965F3"
+                        Height="{TemplateBinding Height}"
+                        RadiusX="4"
+                        RadiusY="4"
+                        Width="{TemplateBinding Width}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Transitions">
+            <Transitions>
+                <CornerRadiusTransition Duration="0:0:0.1" Property="CornerRadius" />
+                <TransformOperationsTransition Duration="0:0:0.1" Property="RenderTransform" />
+            </Transitions>
+        </Setter>
+
+        <!-- <Style Selector="^:pointerover /template/ Border"> -->
+        <!--     <Setter Property="Background" Value="#66FFFFFF" /> -->
+        <!-- </Style> -->
+        <!-- <Style Selector="^:pressed  /template/ Border"> -->
+        <!--     <Setter Property="Background" Value="#99FFFFFF" /> -->
+        <!-- </Style> -->
+        <!-- <Style Selector="^:disabled  /template/ Border"> -->
+        <!--     <Setter Property="Background" Value="Transparent" /> -->
+        <!-- </Style> -->
+    </ControlTheme>
+
+    <ControlTheme TargetType="RepeatButton" x:Key="FluentScrollBarPageButton">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="Opacity" Value="0" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Border Background="{TemplateBinding Background}" />
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+
+    <ControlTheme TargetType="ScrollBar" x:Key="{x:Type ScrollBar}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Transitions">
+            <Setter.Value>
+                <Transitions>
+                    <DoubleTransition Duration="0:0:0.13" Property="Width" />
+                    <DoubleTransition Duration="0:0:0.13" Property="Height" />
+                </Transitions>
+            </Setter.Value>
+        </Setter>
+        <Style Selector="^:vertical">
+            <Setter Property="Width" Value="3" />
+            <Setter Property="Margin" Value="0 1 1 6" />
+            <Setter Property="MinWidth" Value="3" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid x:Name="Root">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            x:Name="VerticalRoot">
+                            <Track
+                                DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                IsDirectionReversed="True"
+                                Maximum="{TemplateBinding Maximum}"
+                                Minimum="{TemplateBinding Minimum}"
+                                Orientation="{TemplateBinding Orientation}"
+                                Value="{TemplateBinding Value,
+                                                        Mode=TwoWay}"
+                                ViewportSize="{TemplateBinding ViewportSize}">
+                                <Track.DecreaseButton>
+                                    <RepeatButton
+                                        Classes="largeIncrease"
+                                        Focusable="False"
+                                        Name="PART_PageUpButton"
+                                        Theme="{StaticResource FluentScrollBarPageButton}" />
+                                </Track.DecreaseButton>
+                                <Track.IncreaseButton>
+                                    <RepeatButton
+                                        Classes="largeIncrease"
+                                        Focusable="False"
+                                        Name="PART_PageDownButton"
+                                        Theme="{StaticResource FluentScrollBarPageButton}" />
+                                </Track.IncreaseButton>
+                                <Thumb Theme="{StaticResource FluentScrollBarThumb}" Width="{TemplateBinding Width}" />
+                            </Track>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+        <Style Selector="^:horizontal">
+            <Setter Property="Margin" Value="1 0 6 1" />
+            <Setter Property="Height" Value="3" />
+            <Setter Property="MinHeight" Value="3" />
+            <Setter Property="Template">
+                <ControlTemplate>
+                    <Grid x:Name="Root">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            x:Name="HorizontalRoot">
+                            <Track
+                                DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Minimum="{TemplateBinding Minimum}"
+                                Orientation="{TemplateBinding Orientation}"
+                                Value="{TemplateBinding Value,
+                                                        Mode=TwoWay}"
+                                ViewportSize="{TemplateBinding ViewportSize}">
+                                <Track.DecreaseButton>
+                                    <RepeatButton
+                                        Classes="largeIncrease"
+                                        Focusable="False"
+                                        Name="PART_PageUpButton"
+                                        Theme="{StaticResource FluentScrollBarPageButton}" />
+                                </Track.DecreaseButton>
+                                <Track.IncreaseButton>
+                                    <RepeatButton
+                                        Classes="largeIncrease"
+                                        Focusable="False"
+                                        Name="PART_PageDownButton"
+                                        Theme="{StaticResource FluentScrollBarPageButton}" />
+                                </Track.IncreaseButton>
+                                <Thumb Height="{TemplateBinding Height}" Theme="{StaticResource FluentScrollBarThumb}" />
+                            </Track>
+                        </Border>
+                    </Grid>
+                </ControlTemplate>
+            </Setter>
+        </Style>
+    </ControlTheme>
+
+    <ControlTheme TargetType="ScrollViewer" x:Key="{x:Type ScrollViewer}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Grid>
+                    <ScrollContentPresenter
+                        Background="{TemplateBinding Background}"
+                        Content="{TemplateBinding Content}"
+                        HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                        HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                        Name="PART_ContentPresenter"
+                        Padding="{TemplateBinding Padding}"
+                        ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}"
+                        VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                        VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}">
+                        <ScrollContentPresenter.GestureRecognizers>
+                            <ScrollGestureRecognizer
+                                CanHorizontallyScroll="{Binding CanHorizontallyScroll, ElementName=PART_ContentPresenter}"
+                                CanVerticallyScroll="{Binding CanVerticallyScroll, ElementName=PART_ContentPresenter}"
+                                IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_ContentPresenter}" />
+                        </ScrollContentPresenter.GestureRecognizers>
+                    </ScrollContentPresenter>
+                    <ScrollBar
+                        Name="PART_HorizontalScrollBar"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Bottom" />
+                    <ScrollBar
+                        HorizontalAlignment="Right"
+                        Name="PART_VerticalScrollBar"
+                        Orientation="Vertical" />
+                </Grid>
+            </ControlTemplate>
+        </Setter>
+
+        <Style Selector="^:pointerover /template/ ScrollBar#PART_HorizontalScrollBar">
+            <Setter Property="Height" Value="6" />
+        </Style>
+
+        <Style Selector="^:pointerover /template/ ScrollBar#PART_VerticalScrollBar">
+            <Setter Property="Width" Value="6" />
+        </Style>
+    </ControlTheme>
+
+</ResourceDictionary>

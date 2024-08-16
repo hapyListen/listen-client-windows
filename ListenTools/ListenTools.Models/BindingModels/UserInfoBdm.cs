@@ -30,12 +30,14 @@ public class UserInfoBdm : ObservableObject
         set => SetProperty(ref _userNameColor, value);
     }
     
-    private string? _direction;
-
-    public string? Direction
+    private string? _summary;
+    /// <summary>
+    /// 简介
+    /// </summary>
+    public string? Summary
     {
-        get => _direction;
-        set => SetProperty(ref _direction, value);
+        get => _summary;
+        set => SetProperty(ref _summary, value);
     }
     
     

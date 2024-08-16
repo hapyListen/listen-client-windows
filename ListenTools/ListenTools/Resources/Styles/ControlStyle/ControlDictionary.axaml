@@ -3,6 +3,7 @@
         <ResourceInclude Source="ButtonStyle.axaml" />
         <ResourceInclude Source="ListBoxItemStyle.axaml" />
         <ResourceInclude Source="TextboxStyle.axaml" />
-        <ResourceInclude Source="AsyncImageStyle.axaml" />
+        <ResourceInclude Source="ComboBoxStyle.axaml" />
+        <ResourceInclude Source="ScrollViewerStyle.axaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

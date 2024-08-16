@@ -1,8 +1,11 @@
 <Window
     DataContext="{Binding Source={StaticResource VmLocator}, Path=MainVm}"
-    ExtendClientAreaToDecorationsHint="False"
+    ExtendClientAreaChromeHints="NoChrome"
+    ExtendClientAreaTitleBarHeightHint="-1"
+    ExtendClientAreaToDecorationsHint="True"
     Height="912"
     Icon="/Resources/Images/logo.png"
+    SystemDecorations="BorderOnly"
     Title="ListenTools"
     Width="1600"
     WindowStartupLocation="CenterScreen"
@@ -31,96 +34,110 @@
         ExtendClientAreaToDecorationsHint="True"
     -->
 
-    <Grid ColumnDefinitions="72,*">
+    <Grid RowDefinitions="Auto,*">
         <Border
-            Background="#1C1B2A"
-            Grid.Column="0"
-            Padding="0,24">
-            <Grid RowDefinitions="Auto,Auto,*,Auto">
-                <StackPanel Grid.Row="0">
+            Background="#100F1D"
+            BorderBrush="#9FA2A7"
+            BorderThickness="0,0,0,0"
+            BoxShadow="0 2 5 0 #100F1D"
+            DoubleTapped="InputElement_OnDoubleTapped"
+            Grid.Row="0"
+            IsVisible="True"
+            Padding="12"
+            PointerPressed="InputElement_OnPointerPressed">
+            <DockPanel LastChildFill="False">
+                <TextBlock
+                    FontFamily="{StaticResource SegoeScript}"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Foreground="{StaticResource ForeColor4}"
+                    IsHitTestVisible="False"
+                    Margin="12,0"
+                    Text="HapyListen"
+                    VerticalAlignment="Center" />
+
+                <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                    <!--  设置按钮  -->
                     <Button
                         Background="Transparent"
-                        CornerRadius="24"
-                        Cursor="Hand"
-                        Height="48"
+                        Height="24"
                         HorizontalAlignment="Center"
-                        Padding="0"
-                        Width="48">
-                        <Image Source="/Resources/Images/logo.png" />
-                    </Button>
-                    <Rectangle
-                        Fill="#D7D7D7"
-                        Height="1"
+                        Margin="0,0,12,0"
+                        Padding="4"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="24"
+                        ext:ButtonExtend.IconPath="{StaticResource UserIcon}" />
+
+                    <!--  设置按钮  -->
+                    <Button
+                        Background="Transparent"
+                        Height="24"
                         HorizontalAlignment="Center"
-                        Margin="0,18"
-                        Opacity=".2"
-                        Width="36" />
+                        Margin="0,0,12,0"
+                        Padding="6"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="24"
+                        ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}"
+                        ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                        ext:ElementExtend.PointOverForeground="#FFFFFF" />
+
+                    <!--  窗口最小化  -->
+                    <Button
+                        Background="Transparent"
+                        Click="WindowMinButton_OnClick"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,12,0"
+                        Padding="6"
+                        Theme="{StaticResource IconPathButton}"
+                        VerticalContentAlignment="Center"
+                        Width="24"
+                        ext:ButtonExtend.IconPath="{StaticResource WindowMinIcon}"
+                        ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                        ext:ElementExtend.PointOverForeground="#FFFFFF" />
+
+                    <!--  窗口最大化  -->
+                    <ToggleButton
+                        Background="Transparent"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        IsCheckedChanged="WindowMaxToggleButton_OnIsCheckedChanged"
+                        Margin="0,0,12,0"
+                        Padding="6"
+                        Theme="{StaticResource IconPathToggleButton}"
+                        Width="24"
+                        ext:ButtonExtend.CheckedIconPath="{StaticResource WindowNormalIcon}"
+                        ext:ButtonExtend.IconPath="{StaticResource WindowMaxIcon}"
+                        ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                        ext:ElementExtend.PointOverForeground="#FFFFFF"
+                        x:Name="WindowMaxToggleButton" />
+
+                    <!--  窗口关闭  -->
+                    <Button
+                        Background="Transparent"
+                        Click="WindowCloseButton_OnClick"
+                        Height="24"
+                        HorizontalAlignment="Center"
+                        Margin="0,0,12,0"
+                        Padding="6"
+                        Theme="{StaticResource IconPathButton}"
+                        Width="24"
+                        ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}"
+                        ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                        ext:ElementExtend.PointOverForeground="#FF6F74" />
                 </StackPanel>
 
-                <!--  音乐界面  -->
-                <StackPanel Grid.Row="1" IsVisible="False">
-                    <Button
-                        ClipToBounds="True"
-                        Foreground="#969696"
-                        Height="32"
-                        HorizontalAlignment="Center"
-                        Padding="0"
-                        Theme="{StaticResource IconPathButton}"
-                        Width="32"
-                        ext:ButtonExtend.IconPath="{StaticResource FreeMP3Icon}" />
-
-                    <Button
-                        ClipToBounds="True"
-                        Foreground="#969696"
-                        Height="32"
-                        HorizontalAlignment="Center"
-                        Margin="0,18,0,0"
-                        Padding="0"
-                        Theme="{StaticResource IconPathButton}"
-                        Width="32"
-                        ext:ButtonExtend.IconPath="{StaticResource NeteasyMusicIcon}" />
-
-                    <Button
-                        ClipToBounds="True"
-                        Foreground="#969696"
-                        Height="32"
-                        HorizontalAlignment="Center"
-                        Margin="0,18,0,0"
-                        Padding="0"
-                        Theme="{StaticResource IconPathButton}"
-                        Width="32"
-                        ext:ButtonExtend.IconPath="{StaticResource BiliMusicIcon}" />
-                    <Button
-                        ClipToBounds="True"
-                        Foreground="#969696"
-                        Height="32"
-                        HorizontalAlignment="Center"
-                        Margin="0,18,0,0"
-                        Padding="0"
-                        Theme="{StaticResource IconPathButton}"
-                        Width="32"
-                        ext:ButtonExtend.IconPath="{StaticResource ListenMusicRoomIcon}" />
-                </StackPanel>
-
-                <ListBox
-                    Background="Transparent"
-                    Grid.Row="2"
-                    Margin="0,18" />
-
-                <!--  设置按钮  -->
-                <Button
-                    Background="Transparent"
-                    Grid.Row="3"
-                    Height="24"
-                    HorizontalAlignment="Center"
-                    Padding="0"
-                    Theme="{StaticResource IconPathButton}"
-                    Width="24"
-                    ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}" />
-            </Grid>
+            </DockPanel>
         </Border>
 
-        <ContentControl Grid.Column="1" x:Name="ViewContent" />
+        <ContentControl Grid.Row="1" x:Name="ViewContent" />
+
+        <!--  <Rectangle  -->
+        <!--  Fill="#000000"  -->
+        <!--  Grid.Row="0"  -->
+        <!--  Grid.RowSpan="2"  -->
+        <!--  IsVisible="False"  -->
+        <!--  Opacity=".45" />  -->
     </Grid>
 
 </Window>

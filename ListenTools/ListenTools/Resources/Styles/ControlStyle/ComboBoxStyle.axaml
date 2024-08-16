@@ -1,0 +1,194 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  下拉框的展开按钮  -->
+    <PathGeometry Figures="M535.466667 812.8l450.133333-563.2c14.933333-19.2 2.133333-49.066667-23.466667-49.066667H61.866667c-25.6 0-38.4 29.866667-23.466667 49.066667l450.133333 563.2c12.8 14.933333 34.133333 14.933333 46.933334 0z" x:Key="ComboBoxExpandIcon" />
+
+    <!--  Add Resources Here  -->
+    <ControlTheme TargetType="ComboBox" x:Key="{x:Type ComboBox}">
+        <Setter Property="Padding" Value="12,5,0,7" />
+        <Setter Property="FocusAdorner" Value="{x:Null}" />
+        <Setter Property="MaxDropDownHeight" Value="504" />
+        <Setter Property="Foreground" Value="#F9F9F9" />
+        <Setter Property="Background" Value="#1C1B28" />
+        <Setter Property="BorderBrush" Value="#F0F0F0" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="PlaceholderForeground" Value="{Binding $self.Foreground}" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <DataValidationErrors>
+                    <Grid ColumnDefinitions="*,32">
+                        <Border
+                            Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            MinWidth="{DynamicResource ComboBoxThemeMinWidth}"
+                            x:Name="Background" />
+                        <Border
+                            Background="Transparent"
+                            BorderBrush="#5965F3"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            CornerRadius="{TemplateBinding CornerRadius}"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            IsVisible="False"
+                            x:Name="HighlightBackground" />
+                        <TextBlock
+                            Foreground="{TemplateBinding PlaceholderForeground}"
+                            Grid.Column="0"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            IsVisible="{TemplateBinding SelectionBoxItem,
+                                                        Converter={x:Static ObjectConverters.IsNull}}"
+                            Margin="{TemplateBinding Padding}"
+                            Text="{TemplateBinding PlaceholderText}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            x:Name="PlaceholderTextBlock" />
+                        <ContentControl
+                            Content="{TemplateBinding SelectionBoxItem}"
+                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                            Grid.Column="0"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            x:Name="ContentPresenter" />
+
+                        <Border
+                            Background="Transparent"
+                            Grid.Column="1"
+                            HorizontalAlignment="Right"
+                            IsVisible="False"
+                            Margin="0,1,1,1"
+                            Width="30"
+                            x:Name="DropDownOverlay" />
+
+                        <PathIcon
+                            Data="{StaticResource ComboBoxExpandIcon}"
+                            Foreground="{TemplateBinding Foreground}"
+                            Grid.Column="1"
+                            Height="12"
+                            HorizontalAlignment="Right"
+                            IsHitTestVisible="False"
+                            Margin="0,0,10,0"
+                            UseLayoutRounding="False"
+                            VerticalAlignment="Center"
+                            Width="12"
+                            x:Name="DropDownGlyph">
+                            <PathIcon.Transitions>
+                                <Transitions>
+                                    <TransformOperationsTransition Duration="0:0:0.167" Property="RenderTransform" />
+                                </Transitions>
+                            </PathIcon.Transitions>
+                        </PathIcon>
+
+                        <Popup
+                            Grid.Column="0"
+                            InheritsTransform="True"
+                            IsLightDismissEnabled="True"
+                            IsOpen="{TemplateBinding IsDropDownOpen,
+                                                     Mode=TwoWay}"
+                            MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                            MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                            Name="PART_Popup"
+                            PlacementTarget="Background"
+                            VerticalOffset="4"
+                            WindowManagerAddShadowHint="False">
+                            <Border
+                                Background="#1C1B28"
+                                BorderBrush="#1C1B28"
+                                BorderThickness="0"
+                                CornerRadius="4"
+                                HorizontalAlignment="Stretch"
+                                Padding="8"
+                                x:Name="PopupBorder">
+                                <ScrollViewer
+                                    HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                    IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}"
+                                    VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}">
+                                    <ItemsPresenter ItemsPanel="{TemplateBinding ItemsPanel}" Name="PART_ItemsPresenter" />
+                                </ScrollViewer>
+                            </Border>
+                        </Popup>
+                    </Grid>
+                </DataValidationErrors>
+            </ControlTemplate>
+        </Setter>
+
+        <!--  Focused State  -->
+        <Style Selector="^:focus-visible">
+            <Style Selector="^ /template/ Border#HighlightBackground">
+                <Setter Property="IsVisible" Value="True" />
+            </Style>
+        </Style>
+
+        <Style Selector="^:dropdownopen">
+            <Style Selector="^ /template/ PathIcon#DropDownGlyph">
+                <Setter Property="RenderTransform" Value="rotate(-90deg)" />
+            </Style>
+        </Style>
+
+        <!--  Disabled State  -->
+        <Style Selector="^:disabled">
+            <Setter Property="Opacity" Value=".9" />
+        </Style>
+    </ControlTheme>
+
+    <!--  ComboBoxItem  -->
+    <ControlTheme TargetType="ComboBoxItem" x:Key="{x:Type ComboBoxItem}">
+        <Setter Property="Foreground" Value="#969696" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="12 8" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    Content="{TemplateBinding Content}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Foreground="{TemplateBinding Foreground}"
+                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                    Name="PART_ContentPresenter"
+                    Padding="{TemplateBinding Padding}"
+                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </ControlTemplate>
+        </Setter>
+
+        <!--  PointerOver state  -->
+        <Style Selector="^:pointerover /template/ ContentPresenter">
+            <Setter Property="Background" Value="#5965F3" />
+            <Setter Property="Foreground" Value="#FFFFFF" />
+        </Style>
+
+        <!--  Disabled state  -->
+        <Style Selector="^:disabled /template/ ContentPresenter">
+            <Setter Property="Opacity" Value=".9" />
+        </Style>
+
+        <!--  Selected state  -->
+        <Style Selector="^:selected">
+            <Style Selector="^ /template/ ContentPresenter">
+                <Setter Property="Background" Value="#5965F3" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+            </Style>
+            <!--  Selected Disabled state  -->
+            <Style Selector="^:disabled /template/ ContentPresenter">
+                <Setter Property="Opacity" Value=".9" />
+            </Style>
+        </Style>
+    </ControlTheme>
+</ResourceDictionary>

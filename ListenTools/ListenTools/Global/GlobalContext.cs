@@ -1,5 +1,7 @@
 using System;
 using System.Net.Http;
+using Avalonia.Controls;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ListenTools.Global;
@@ -29,7 +31,6 @@ public class GlobalContext
     private GlobalContext()
     {
     }
-
 
     #region DI获取数据
 
@@ -63,4 +64,5 @@ public class GlobalContext
     }
 
     #endregion
+
 }

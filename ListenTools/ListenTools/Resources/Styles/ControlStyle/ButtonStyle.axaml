@@ -30,7 +30,6 @@
                         CornerRadius="{TemplateBinding CornerRadius}"
                         Height="{TemplateBinding Height}"
                         Padding="{TemplateBinding Padding}"
-                        RenderTransformOrigin="50%,50%"
                         Width="{TemplateBinding Width}">
                         <Border.Transitions>
                             <Transitions>
@@ -43,8 +42,10 @@
                         <Path
                             Data="{TemplateBinding ext:ButtonExtend.IconPath}"
                             Fill="{TemplateBinding Foreground}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                             Stretch="{TemplateBinding ext:ButtonExtend.IconStretch}"
-                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+                            UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                             <Path.Transitions>
                                 <Transitions>
                                     <BrushTransition

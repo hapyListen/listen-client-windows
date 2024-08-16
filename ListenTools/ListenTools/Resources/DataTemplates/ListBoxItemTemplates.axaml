@@ -3,14 +3,15 @@
     xmlns:bindingModels="clr-namespace:ListenTools.Models.BindingModels;assembly=ListenTools.Models"
     xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
     xmlns:img="clr-namespace:AsyncImageLoader;assembly=AsyncImageLoader.Avalonia"
+    xmlns:roomModels="clr-namespace:ListenTools.Models.BindingModels.RoomModels;assembly=ListenTools.Models"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--  Add Resources Here  -->
 
     <!--  首页热门房间模板  -->
-    <DataTemplate DataType="{x:Type bindingModels:RoomCardBdm}" x:Key="HotRoomCardTemplate">
+    <DataTemplate DataType="{x:Type roomModels:RoomCardBdm}" x:Key="HotRoomCardTemplate">
         <Grid ClipToBounds="True" RowDefinitions="162,Auto,*,Auto">
-            <ucs:AsyncImage
+            <ucs:NetImage
                 CornerRadius="12 12 0 0"
                 Grid.Row="0"
                 Height="162"
@@ -35,7 +36,7 @@
                 Padding="8"
                 Width="260">
                 <Grid ColumnDefinitions="44,*,Auto">
-                    <ucs:AsyncImage
+                    <ucs:NetImage
                         CornerRadius="24"
                         Grid.Column="0"
                         Height="44"
@@ -125,7 +126,12 @@
     <DataTemplate DataType="{x:Type bindingModels:UserInfoBdm}" x:Key="ChatRoomUsersItemTemplate">
         <Grid Background="Transparent" ColumnDefinitions="36,12,*">
             <Panel Grid.Column="0">
-                <ucs:AsyncImage Stretch="Uniform" UrlSource="{Binding HeadImage}" />
+                <ucs:NetImage
+                    CornerRadius="18"
+                    Height="36"
+                    Stretch="Uniform"
+                    UrlSource="{Binding HeadImage}"
+                    Width="36" />
                 <Rectangle
                     Fill="{Binding IsOnline, Converter={StaticResource BoolToColor}, ConverterParameter=#6AD959|#5E5E5E}"
                     Height="14"
@@ -156,7 +162,7 @@
                     Foreground="#F1F2F3"
                     MaxWidth="154"
                     Opacity=".57"
-                    Text="{Binding Direction}"
+                    Text="{Binding Summary}"
                     TextTrimming="CharacterEllipsis" />
             </StackPanel>
         </Grid>

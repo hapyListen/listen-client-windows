@@ -6,6 +6,7 @@ using Avalonia.Controls;
 using Avalonia.Media;
 using ListenTools.Models;
 using ListenTools.Models.BindingModels;
+using ListenTools.Models.BindingModels.RoomModels;
 using ListenTools.Models.Enums;
 
 namespace ListenTools.ViewModels;

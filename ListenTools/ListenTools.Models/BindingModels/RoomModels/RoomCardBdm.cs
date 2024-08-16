@@ -1,7 +1,7 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using ListenTools.Models.Enums;
 
-namespace ListenTools.Models.BindingModels;
+namespace ListenTools.Models.BindingModels.RoomModels;
 
 public class RoomCardBdm : ObservableObject
 {

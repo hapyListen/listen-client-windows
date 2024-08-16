@@ -79,10 +79,14 @@
                                             Tag="{Binding EmojiPath}"
                                             Theme="{StaticResource EmojiButtonTheme}"
                                             ToolTip.Tip="{Binding EmojiName}">
-                                            <local:AsyncImage
+                                            <local:NetImage
                                                 Stretch="Uniform"
                                                 UrlSource="{Binding EmojiPath}"
                                                 UseLayoutRounding="True" />
+                                            <!--  <Image  -->
+                                            <!--  Source="{Binding EmojiPath}"  -->
+                                            <!--  Stretch="Uniform"  -->
+                                            <!--  UseLayoutRounding="True" />  -->
                                         </Button>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>

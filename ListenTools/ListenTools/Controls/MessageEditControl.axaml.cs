@@ -104,7 +104,6 @@ public partial class MessageEditControl : UserControl
         var insertTxt = $"[{e.EmojiName}]";
         this.Message = this.Message.Insert(insertIndex, insertTxt);
         this._inputMessageBox.SelectionStart = insertIndex + insertTxt.Length;
-        this._inputMessageBox.ClearSelection();
     }
 
     /// <summary>

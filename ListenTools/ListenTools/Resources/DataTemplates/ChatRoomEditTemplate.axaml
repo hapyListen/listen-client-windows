@@ -1,0 +1,61 @@
+<ResourceDictionary
+    xmlns="https://github.com/avaloniaui"
+    xmlns:roomModel="clr-namespace:ListenTools.Models.BindingModels.RoomModels;assembly=ListenTools.Models"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--  Add Resources Here  -->
+    <DataTemplate DataType="{x:Type roomModel:RoomInfoDetailBdm}" x:Key="ChatRoomSettingTemplate">
+        <Border Padding="12">
+            <Border.Resources>
+                <ControlTheme TargetType="TextBlock" x:Key="ChatRoomSettingPropertyTitle">
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="Foreground" Value="#9FA2A7" />
+                </ControlTheme>
+            </Border.Resources>
+            <Grid RowDefinitions="Auto,*">
+                <TextBlock
+                    FontFamily="{StaticResource HarmonyOsBoldFont}"
+                    FontSize="24"
+                    Grid.Row="0"
+                    Text="房间信息" />
+
+                <ScrollViewer
+                    Grid.Row="1"
+                    HorizontalScrollBarVisibility="Disabled"
+                    VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <TextBlock Text="房间头像：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <Image Height="32" Width="32" />
+
+                        <TextBlock Text="房间编号：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="房间名称：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="房间介绍：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <!-- <TextBlock Text="房间标签：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" /> -->
+                        <!-- <TextBox Theme="{StaticResource TextBoxBase}" /> -->
+
+                        <TextBlock Text="房间类型：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="最大人数：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="房间密码：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="直播地址：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+
+                        <TextBlock Text="是否公开：" Theme="{StaticResource ChatRoomSettingPropertyTitle}" />
+                        <TextBox Theme="{StaticResource TextBoxBase}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </DataTemplate>
+</ResourceDictionary>

@@ -16,6 +16,8 @@
             <FontFamily x:Key="HarmonyOsBoldFont">avares://ListenTools/Resources/Fonts/HarmonyOS_Sans_SC_Bold.ttf#HarmonyOS Sans SC</FontFamily>
             <!--  思源黑体  -->
             <FontFamily x:Key="SourceHanFont">avares://ListenTools/Resources/Fonts/SourceHanSansCN-Regular.ttf#Source Han Sans CN</FontFamily>
+            <!--  标题字体  -->
+            <FontFamily x:Key="SegoeScript">avares://ListenTools/Resources/Fonts/segoescb.ttf#Segoe Script</FontFamily>
 
             <ResourceDictionary.MergedDictionaries>
                 <ResourceInclude Source="/Resources/Themes/LightTheme.axaml" />

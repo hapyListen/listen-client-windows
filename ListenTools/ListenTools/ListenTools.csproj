@@ -176,6 +176,10 @@
         <AvaloniaResource Include="Resources\Images\Emoji\emoji-wink.png" />
         <None Remove="Resources\Images\Emoji\emoji-zombie.png" />
         <AvaloniaResource Include="Resources\Images\Emoji\emoji-zombie.png" />
+        <None Remove="Resources\Fonts\segoescb.ttf" />
+        <AvaloniaResource Include="Resources\Fonts\segoescb.ttf" />
+        <None Remove="Resources\Images\musicRoomDefaultIcon.png" />
+        <AvaloniaResource Include="Resources\Images\musicRoomDefaultIcon.png" />
     </ItemGroup>
 
     <ItemGroup>
@@ -186,7 +190,6 @@
         <PackageReference Include="Avalonia.Fonts.Inter" Version="11.1.2" />
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.1.2" />
-        <PackageReference Include="Avalonia_Gif" Version="1.0.0" />
         <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.2" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.6.24327.7" />
         <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.0-preview.6.24327.7" />
