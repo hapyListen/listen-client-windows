@@ -10,19 +10,19 @@
 
 
 核心模块：
-![image-20240810191559347](E:\Projects\DotnetProjects\listen-client-windows\pic\image-20240810191559347.png)
+![image-20240810191559347](https://github.com/hapyListen/listen-client-windows/blob/master/pic/image-20240810191559347.png)
 
 用户模块：
 
-![image-20240810191933861](E:\Projects\DotnetProjects\listen-client-windows\pic\image-20240810191933861.png)
+![image-20240810191933861](https://github.com/hapyListen/listen-client-windows/blob/master/pic/image-20240810191933861.png)
 
 聊天室模块：
 
-![image-20240810192149105](E:\Projects\DotnetProjects\listen-client-windows\pic\image-20240810192149105.png)
+![image-20240810192149105](https://github.com/hapyListen/listen-client-windows/blob/master/pic/image-20240810192149105.png)
 
 音乐模块：
 
-![image-20240810192304268](E:\Projects\DotnetProjects\listen-client-windows\pic\image-20240810192304268.png)
+![image-20240810192304268](https://github.com/hapyListen/listen-client-windows/blob/master/pic/image-20240810192304268.png)
 
 
 ## 框架
