@@ -6,11 +6,10 @@
     ExtendClientAreaToDecorationsHint="True"
     ShowActivated="True"
     ShowInTaskbar="False"
-    SizeToContent="Height"
+    SizeToContent="WidthAndHeight"
     SystemDecorations="None"
     Title="ChatRoomEditDialog"
     TransparencyLevelHint="AcrylicBlur"
-    Width="800"
     WindowStartupLocation="CenterOwner"
     mc:Ignorable="d"
     x:Class="ListenTools.Views.ChatRoomEditDialog"
@@ -25,10 +24,14 @@
             <Setter Property="FontSize" Value="14" />
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="TextAlignment" Value="Right" />
         </ControlTheme>
     </Window.Resources>
-    <Panel>
-        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+    <Grid RowDefinitions="Auto,Auto,*">
+        <ExperimentalAcrylicBorder
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            IsHitTestVisible="False">
             <ExperimentalAcrylicBorder.Material>
                 <ExperimentalAcrylicMaterial
                     BackgroundSource="Digger"
@@ -38,11 +41,138 @@
             </ExperimentalAcrylicBorder.Material>
         </ExperimentalAcrylicBorder>
 
-        <Grid RowDefinitions="180,*">
-            <Panel Grid.Row="0">
-                <!--  聊天室背景图  -->
-                <Image Source="/Resources/Images/chatRoomDefaultBgImage.jpg" Stretch="UniformToFill" />
+        <DockPanel
+            Grid.Row="0"
+            LastChildFill="False"
+            Margin="12">
+            <TextBlock
+                DockPanel.Dock="Left"
+                FontFamily="{StaticResource HarmonyOsBoldFont}"
+                FontSize="18"
+                Foreground="#F9F9F9"
+                Text="房间设置" />
 
+            <!--  窗口关闭  -->
+            <Button
+                Background="Transparent"
+                Click="WindowCloseButton_OnClick"
+                DockPanel.Dock="Right"
+                Height="24"
+                HorizontalAlignment="Right"
+                Padding="6"
+                Theme="{StaticResource IconPathButton}"
+                VerticalAlignment="Top"
+                Width="24"
+                ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}"
+                ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                ext:ElementExtend.PointOverForeground="#FF6F74" />
+        </DockPanel>
+
+        <StackPanel Grid.Row="1" Margin="80,12">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal">
+                <TextBlock
+                    Margin="0,6,0,0"
+                    Text="房间头像："
+                    Theme="{StaticResource SettingTitleText}"
+                    VerticalAlignment="Top" />
+                <Border
+                    ClipToBounds="True"
+                    CornerRadius="16"
+                    HorizontalAlignment="Left"
+                    Padding="0"
+                    VerticalAlignment="Top">
+                    <Image
+                        Height="128"
+                        Source="/Resources/Images/logo.png"
+                        Stretch="Fill"
+                        UseLayoutRounding="True"
+                        Width="128" />
+                </Border>
+            </StackPanel>
+            <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                <TextBlock Text="房间名称：" Theme="{StaticResource SettingTitleText}" />
+                <TextBox
+                    Background="#2A2C30"
+                    BorderBrush="#2A2C30"
+                    Foreground="#F9F9F9"
+                    HorizontalAlignment="Left"
+                    PasswordChar="●"
+                    RevealPassword="True"
+                    Text=""
+                    TextInputOptions.ContentType="Password"
+                    Theme="{StaticResource DefaultTextBox}"
+                    Width="200" />
+                <TextBlock
+                    Margin="24,0,0,0"
+                    Text="房间编号："
+                    Theme="{StaticResource SettingTitleText}" />
+                <Label
+                    Background="{StaticResource PrimaryColor}"
+                    Content="10010"
+                    CornerRadius="4"
+                    FontSize="14"
+                    FontWeight="Bold"
+                    Foreground="#FFFFFF"
+                    HorizontalAlignment="Left"
+                    HorizontalContentAlignment="Center"
+                    VerticalContentAlignment="Center"
+                    Width="100" />
+            </StackPanel>
+
+            <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                <TextBlock Text="房间类型：" Theme="{StaticResource SettingTitleText}" />
+                <ComboBox
+                    Background="#2A2C30"
+                    BorderThickness="0"
+                    Width="200">
+                    <ComboBoxItem Content="聊天室" />
+                    <ComboBoxItem Content="一起听" />
+                    <ComboBoxItem Content="放映室" />
+                    <ComboBoxItem Content="直播间" />
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                <TextBlock Text="最大人数：" Theme="{StaticResource SettingTitleText}" />
+                <NumericUpDown
+                    Background="#2A2C30"
+                    BorderBrush="#2A2C30"
+                    Foreground="#F9F9F9"
+                    HorizontalAlignment="Left"
+                    Maximum="100"
+                    Minimum="1"
+                    Value="30"
+                    Width="200" />
+            </StackPanel>
+            <!-- <StackPanel Margin="0,12,0,0" Orientation="Horizontal"> -->
+            <!--  <TextBlock  -->
+            <!--  Margin="0,6,0,0"  -->
+            <!--  Text="背景图片："  -->
+            <!--  Theme="{StaticResource SettingTitleText}"  -->
+            <!--  VerticalAlignment="Top" />  -->
+            <!--    -->
+            <!--     <Rectangle Height="128" Width="400"> -->
+            <!--         <Rectangle.Fill> -->
+            <!--             <ImageBrush Source="/Resources/Images/chatRoomDefaultBgImage.jpg" Stretch="UniformToFill" /> -->
+            <!--         </Rectangle.Fill> -->
+            <!--     </Rectangle> -->
+            <!-- </StackPanel> -->
+
+
+        </StackPanel>
+
+        <Grid
+            Grid.Row="1"
+            IsVisible="False"
+            RowDefinitions="168.7,*">
+            <!--  聊天室背景图  -->
+            <Rectangle Grid.Row="0">
+                <Rectangle.Fill>
+                    <ImageBrush Source="/Resources/Images/chatRoomDefaultBgImage.jpg" Stretch="UniformToFill" />
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Panel Grid.Row="0">
                 <StackPanel
                     HorizontalAlignment="Left"
                     Margin="24"
@@ -127,6 +257,9 @@
                     VerticalAlignment="Top" />
                 <TextBox
                     AcceptsReturn="True"
+                    Background="#2A2C30"
+                    BorderBrush="#2A2C30"
+                    Foreground="#F9F9F9"
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
                     Grid.Row="0"
@@ -158,9 +291,15 @@
                     Text="最大人数："
                     Theme="{StaticResource SettingTitleText}" />
                 <NumericUpDown
+                    Background="#2A2C30"
+                    BorderBrush="#2A2C30"
+                    Foreground="#F9F9F9"
                     Grid.Column="3"
                     Grid.Row="2"
                     HorizontalAlignment="Left"
+                    Maximum="100"
+                    Minimum="1"
+                    Value="30"
                     Width="200" />
 
                 <TextBlock
@@ -169,6 +308,9 @@
                     Text="房间密码："
                     Theme="{StaticResource SettingTitleText}" />
                 <TextBox
+                    Background="#2A2C30"
+                    BorderBrush="#2A2C30"
+                    Foreground="#F9F9F9"
                     Grid.Column="1"
                     Grid.Row="4"
                     HorizontalAlignment="Left"
@@ -189,47 +331,42 @@
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="6"
+                    IsVisible="False"
                     Text="直播地址："
                     Theme="{StaticResource SettingTitleText}" />
                 <TextBox
                     Grid.Column="1"
                     Grid.ColumnSpan="3"
                     Grid.Row="6"
+                    IsReadOnly="True"
+                    IsVisible="False"
                     Theme="{StaticResource DefaultTextBox}" />
 
                 <TextBlock
                     Grid.Column="0"
                     Grid.Row="8"
+                    IsVisible="False"
                     Text="投票切歌："
                     Theme="{StaticResource SettingTitleText}" />
-                <ToggleSwitch Grid.Column="1" Grid.Row="8" />
+                <ToggleSwitch
+                    Grid.Column="1"
+                    Grid.Row="8"
+                    IsVisible="False" />
 
                 <TextBlock
                     Grid.Column="2"
                     Grid.Row="8"
+                    IsVisible="False"
                     Text="投票占比："
                     Theme="{StaticResource SettingTitleText}" />
                 <Slider
                     Grid.Column="3"
                     Grid.Row="8"
+                    IsVisible="False"
                     Maximum="100"
                     Minimum="10" />
             </Grid>
         </Grid>
 
-        <!--  窗口关闭  -->
-        <Button
-            Background="Transparent"
-            Click="WindowCloseButton_OnClick"
-            Height="24"
-            HorizontalAlignment="Right"
-            Margin="0,12,24,0"
-            Padding="6"
-            Theme="{StaticResource IconPathButton}"
-            VerticalAlignment="Top"
-            Width="24"
-            ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}"
-            ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
-            ext:ElementExtend.PointOverForeground="#FF6F74" />
-    </Panel>
+    </Grid>
 </Window>

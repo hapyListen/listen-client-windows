@@ -6,6 +6,7 @@
     xmlns:bdm="clr-namespace:ListenTools.Models.BindingModels;assembly=ListenTools.Models"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
+    xmlns:local="clr-namespace:ListenTools.Views.ChatRoomPages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ucs="clr-namespace:ListenTools.Controls"
     xmlns:vm="clr-namespace:ListenTools.ViewModels.ChatRoomViewModels"
@@ -14,187 +15,197 @@
         <vm:ChatRoomViewModel />
     </Design.DataContext>
 
-    <Grid ColumnDefinitions="260,*,Auto">
-        <!--  聊天消息区  -->
-        <Panel Background="#1C1B2B" Grid.Column="1">
-            <!--  背景图片  -->
-            <Rectangle
-                IsHitTestVisible="False"
-                Opacity=".167"
-                Stretch="Fill">
-                <Rectangle.Fill>
-                    <ImageBrush Source="avares://ListenTools/Resources/Images/chatRoomDefaultBgImage.jpg" Stretch="Fill" />
-                </Rectangle.Fill>
-            </Rectangle>
-            <Grid RowDefinitions="Auto,*,Auto">
-                <!--  Top 菜单信息栏  -->
-                <Border
-                    Background="#292742"
-                    Grid.Row="0"
-                    Height="60">
-                    <DockPanel
-                        LastChildFill="False"
-                        Margin="12,0,0,0"
-                        VerticalAlignment="Center">
-                        <!--  <Image  -->
-                        <!--  CornerRadius="12"  -->
-                        <!--  DockPanel.Dock="Left"  -->
-                        <!--  Height="48"  -->
-                        <!--  UrlSource="\Resources\Images\logo.png"  -->
-                        <!--  Width="48" />  -->
-                        <Image
-                            DockPanel.Dock="Left"
-                            Height="48"
-                            Source="avares://ListenTools/Resources/Images/Emoji/emoji-sad2.png"
-                            Width="48" />
-                        <StackPanel
-                            DockPanel.Dock="Left"
-                            Margin="14,0,8,0"
+    <Panel>
+        <Grid ColumnDefinitions="260,*,Auto" x:Name="PART_RoomParentGrid">
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="1" ScaleY="1" />
+            </Grid.RenderTransform>
+            <Grid.Transitions>
+                <Transitions>
+                    <TransformOperationsTransition Duration="0:0:0.13" Property="RenderTransform" />
+                </Transitions>
+            </Grid.Transitions>
+            <!--  聊天消息区  -->
+            <Panel Background="#1C1B2B" Grid.Column="1">
+                <!--  背景图片  -->
+                <Rectangle
+                    IsHitTestVisible="False"
+                    Opacity=".167"
+                    Stretch="Fill">
+                    <Rectangle.Fill>
+                        <ImageBrush Source="avares://ListenTools/Resources/Images/chatRoomDefaultBgImage.jpg" Stretch="Fill" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Grid RowDefinitions="Auto,*,Auto">
+                    <!--  Top 菜单信息栏  -->
+                    <Border
+                        Background="#292742"
+                        Grid.Row="0"
+                        Height="60">
+                        <DockPanel
+                            LastChildFill="False"
+                            Margin="12,0,0,0"
                             VerticalAlignment="Center">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock
-                                    FontFamily="{StaticResource HarmonyOsBoldFont}"
-                                    FontSize="18"
-                                    Foreground="#B9BBBE"
-                                    Text="摸鱼聊天群"
-                                    TextAlignment="Center"
-                                    VerticalAlignment="Center" />
+                            <ucs:NetImage
+                                CornerRadius="12"
+                                DockPanel.Dock="Left"
+                                Height="48"
+                                UrlSource="\Resources\Images\logo.png"
+                                Width="48" />
+                            <StackPanel
+                                DockPanel.Dock="Left"
+                                Margin="14,0,8,0"
+                                VerticalAlignment="Center">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock
+                                        FontFamily="{StaticResource HarmonyOsBoldFont}"
+                                        FontSize="18"
+                                        Foreground="#B9BBBE"
+                                        Text="摸鱼聊天群"
+                                        TextAlignment="Center"
+                                        VerticalAlignment="Center" />
 
-                                <!--  房间号  -->
-                                <Label
-                                    Background="{StaticResource PrimaryColor}"
-                                    Content="房间号:10010"
-                                    CornerRadius="4"
+                                    <!--  房间号  -->
+                                    <Label
+                                        Background="{StaticResource PrimaryColor}"
+                                        Content="房间号:10010"
+                                        CornerRadius="4"
+                                        FontSize="12"
+                                        FontWeight="Bold"
+                                        Foreground="#B9BBBE"
+                                        Margin="12,0,0,0"
+                                        Padding="6,4"
+                                        VerticalAlignment="Center" />
+
+                                </StackPanel>
+                                <TextBlock
                                     FontSize="12"
-                                    FontWeight="Bold"
                                     Foreground="#B9BBBE"
-                                    Margin="12,0,0,0"
-                                    Padding="6,4"
-                                    VerticalAlignment="Center" />
+                                    Margin="0,4,0,0"
+                                    Opacity=".75"
+                                    Text="懒逼房主，简介都不写" />
+                            </StackPanel>
+
+                            <StackPanel
+                                DockPanel.Dock="Right"
+                                Margin="0,0,18,0"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                                <!--  设置房间  -->
+                                <Button
+                                    Background="Transparent"
+                                    Command="{Binding OpenEditDialogCommand}"
+                                    Foreground="#9FA2A7"
+                                    Height="26"
+                                    Margin="0,0,16,0"
+                                    Theme="{StaticResource IconPathButton}"
+                                    ToolTip.Tip="房间设置"
+                                    Width="26"
+                                    ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}" />
+
+                                <!--  分享房间  -->
+                                <Button
+                                    Background="Transparent"
+                                    Foreground="#9FA2A7"
+                                    Height="26"
+                                    Margin="0,0,16,0"
+                                    Theme="{StaticResource IconPathButton}"
+                                    ToolTip.Tip="分享房间"
+                                    Width="26"
+                                    ext:ButtonExtend.IconPath="{StaticResource ShareRoomIcon}" />
+
+                                <!--  常驻房间  -->
+                                <Button
+                                    Background="Transparent"
+                                    Foreground="#9FA2A7"
+                                    Height="26"
+                                    Margin="0,0,16,0"
+                                    Theme="{StaticResource IconPathButton}"
+                                    ToolTip.Tip="常驻房间"
+                                    Width="26"
+                                    ext:ButtonExtend.IconPath="{StaticResource PermanentIcon}" />
+
+                                <!--  退出房间  -->
+                                <Button
+                                    Background="Transparent"
+                                    Foreground="#9FA2A7"
+                                    Height="26"
+                                    Margin="0,0,16,0"
+                                    Theme="{StaticResource IconPathButton}"
+                                    ToolTip.Tip="退出房间"
+                                    Width="26"
+                                    ext:ButtonExtend.IconPath="{StaticResource ExitRoomIcon}" />
+
+                                <!--  <Rectangle  -->
+                                <!--  Fill="#9FA2A7"  -->
+                                <!--  Height="18"  -->
+                                <!--  Width="2" />  -->
+
+                                <!--  搜索框  -->
 
                             </StackPanel>
-                            <TextBlock
-                                FontSize="12"
-                                Foreground="#B9BBBE"
-                                Margin="0,4,0,0"
-                                Opacity=".75"
-                                Text="懒逼房主，简介都不写" />
-                        </StackPanel>
+                        </DockPanel>
+                    </Border>
 
-                        <StackPanel
-                            DockPanel.Dock="Right"
-                            Margin="0,0,18,0"
-                            Orientation="Horizontal"
-                            VerticalAlignment="Center">
-                            <!--  设置房间  -->
-                            <Button
-                                Background="Transparent"
-                                Command="{Binding OpenEditDialogCommand}"
-                                Foreground="#9FA2A7"
-                                Height="26"
-                                Margin="0,0,16,0"
-                                Theme="{StaticResource IconPathButton}"
-                                ToolTip.Tip="房间设置"
-                                Width="26"
-                                ext:ButtonExtend.IconPath="{StaticResource SettingsIcon}" />
+                    <ListBox Background="Transparent" Grid.Row="1" />
+                    <ScrollViewer Grid.Row="1" />
 
-                            <!--  分享房间  -->
-                            <Button
-                                Background="Transparent"
-                                Foreground="#9FA2A7"
-                                Height="26"
-                                Margin="0,0,16,0"
-                                Theme="{StaticResource IconPathButton}"
-                                ToolTip.Tip="分享房间"
-                                Width="26"
-                                ext:ButtonExtend.IconPath="{StaticResource ShareRoomIcon}" />
+                    <ucs:MessageEditControl Grid.Row="2" VerticalAlignment="Bottom" />
+                </Grid>
+            </Panel>
 
-                            <!--  常驻房间  -->
-                            <Button
-                                Background="Transparent"
-                                Foreground="#9FA2A7"
-                                Height="26"
-                                Margin="0,0,16,0"
-                                Theme="{StaticResource IconPathButton}"
-                                ToolTip.Tip="常驻房间"
-                                Width="26"
-                                ext:ButtonExtend.IconPath="{StaticResource PermanentIcon}" />
+            <!--  左边成员列表  -->
+            <Border
+                Background="#1C1B2A"
+                BoxShadow="5 0 10 0 #292742"
+                Grid.Column="0"
+                Padding="20,10">
+                <Grid RowDefinitions="Auto,Auto,28,Auto,*">
+                    <StackPanel Grid.Row="1">
+                        <TextBlock
+                            FontFamily="{StaticResource HarmonyOsBoldFont}"
+                            FontSize="14"
+                            Foreground="#9FA2A7"
+                            Text="房间所有者" />
 
-                            <!--  退出房间  -->
-                            <Button
-                                Background="Transparent"
-                                Foreground="#9FA2A7"
-                                Height="26"
-                                Margin="0,0,16,0"
-                                Theme="{StaticResource IconPathButton}"
-                                ToolTip.Tip="退出房间"
-                                Width="26"
-                                ext:ButtonExtend.IconPath="{StaticResource ExitRoomIcon}" />
+                        <ContentControl
+                            ClipToBounds="False"
+                            Content="{Binding RoomManInfo}"
+                            ContentTemplate="{StaticResource ChatRoomUsersItemTemplate}"
+                            Margin="0,18,0,0" />
+                    </StackPanel>
 
-                            <!--  <Rectangle  -->
-                            <!--  Fill="#9FA2A7"  -->
-                            <!--  Height="18"  -->
-                            <!--  Width="2" />  -->
-
-                            <!--  搜索框  -->
-
-                        </StackPanel>
-                    </DockPanel>
-                </Border>
-
-                <ListBox Background="Transparent" Grid.Row="1" />
-                <ScrollViewer Grid.Row="1">
-                    <Border Background="Transparent" Height="3000" />
-                </ScrollViewer>
-
-                <ucs:MessageEditControl Grid.Row="2" VerticalAlignment="Bottom" />
-            </Grid>
-        </Panel>
-
-        <!--  左边成员列表  -->
-        <Border
-            Background="#1C1B2A"
-            BoxShadow="5 0 10 0 #292742"
-            Grid.Column="0"
-            Padding="20,10">
-            <Grid RowDefinitions="Auto,Auto,28,Auto,*">
-                <!--  搜索框  -->
-                <!--  <TextBox  -->
-                <!--  BorderBrush="{StaticResource PrimaryBrush50}"  -->
-                <!--  BorderThickness="1"  -->
-                <!--  Grid.Row="0"  -->
-                <!--  Height="40"  -->
-                <!--  Margin="0,0,0,24"  -->
-                <!--  Theme="{StaticResource ChatRoomSearchTextBoxTheme}"  -->
-                <!--  Width="216" />  -->
-
-                <StackPanel Grid.Row="1">
                     <TextBlock
                         FontFamily="{StaticResource HarmonyOsBoldFont}"
                         FontSize="14"
                         Foreground="#9FA2A7"
-                        Text="房间所有者" />
+                        Grid.Row="3"
+                        Text="成员列表" />
 
-                    <ContentControl
-                        ClipToBounds="False"
-                        Content="{Binding RoomManInfo}"
-                        ContentTemplate="{StaticResource ChatRoomUsersItemTemplate}"
+                    <ListBox
+                        Background="Transparent"
+                        Grid.Row="4"
+                        ItemsSource="{Binding UserList}"
                         Margin="0,18,0,0" />
-                </StackPanel>
+                </Grid>
+            </Border>
+        </Grid>
+        <Panel IsVisible="False" x:Name="SettingMarkPanel">
+            <Border
+                Background="#100F1D"
+                IsVisible="True"
+                Opacity=".35" />
 
-                <TextBlock
-                    FontFamily="{StaticResource HarmonyOsBoldFont}"
-                    FontSize="14"
-                    Foreground="#9FA2A7"
-                    Grid.Row="3"
-                    Text="成员列表" />
-
-                <ListBox
-                    Background="Transparent"
-                    Grid.Row="4"
-                    ItemsSource="{Binding UserList}"
-                    Margin="0,18,0,0" />
-            </Grid>
-        </Border>
-    </Grid>
+            <local:ChatRoomSettingView HorizontalAlignment="Right" x:Name="PART_RoomSettingControl">
+                <local:ChatRoomSettingView.RenderTransform>
+                    <TranslateTransform X="300" />
+                </local:ChatRoomSettingView.RenderTransform>
+                <local:ChatRoomSettingView.Transitions>
+                    <Transitions>
+                        <TransformOperationsTransition Duration="0:0:0.13" Property="RenderTransform" />
+                    </Transitions>
+                </local:ChatRoomSettingView.Transitions>
+            </local:ChatRoomSettingView>
+        </Panel>
+    </Panel>
 </UserControl>

@@ -52,18 +52,17 @@
     <ControlTheme TargetType="ScrollBar" x:Key="{x:Type ScrollBar}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="Transitions">
-            <Setter.Value>
-                <Transitions>
-                    <DoubleTransition Duration="0:0:0.13" Property="Width" />
-                    <DoubleTransition Duration="0:0:0.13" Property="Height" />
-                </Transitions>
-            </Setter.Value>
-        </Setter>
         <Style Selector="^:vertical">
-            <Setter Property="Width" Value="3" />
-            <Setter Property="Margin" Value="0 1 1 6" />
-            <Setter Property="MinWidth" Value="3" />
+            <Setter Property="Width" Value="6" />
+            <Setter Property="Margin" Value="0 1 4 6" />
+            <Setter Property="MinWidth" Value="6" />
+            <Setter Property="Transitions">
+                <Setter.Value>
+                    <Transitions>
+                        <DoubleTransition Duration="0:0:0.16" Property="Width" />
+                    </Transitions>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <ControlTemplate>
                     <Grid x:Name="Root">
@@ -102,9 +101,16 @@
             </Setter>
         </Style>
         <Style Selector="^:horizontal">
-            <Setter Property="Margin" Value="1 0 6 1" />
-            <Setter Property="Height" Value="3" />
-            <Setter Property="MinHeight" Value="3" />
+            <Setter Property="Margin" Value="1 0 6 4" />
+            <Setter Property="Height" Value="6" />
+            <Setter Property="MinHeight" Value="6" />
+            <Setter Property="Transitions">
+                <Setter.Value>
+                    <Transitions>
+                        <DoubleTransition Duration="0:0:0.16" Property="Height" />
+                    </Transitions>
+                </Setter.Value>
+            </Setter>
             <Setter Property="Template">
                 <ControlTemplate>
                     <Grid x:Name="Root">
@@ -141,6 +147,13 @@
                 </ControlTemplate>
             </Setter>
         </Style>
+
+        <Style Selector="^[Orientation=Horizontal]:pointerover">
+            <Setter Property="Height" Value="12" />
+        </Style>
+        <Style Selector="^[Orientation=Vertical]:pointerover">
+            <Setter Property="Width" Value="12" />
+        </Style>
     </ControlTheme>
 
     <ControlTheme TargetType="ScrollViewer" x:Key="{x:Type ScrollViewer}">
@@ -167,22 +180,36 @@
                     </ScrollContentPresenter>
                     <ScrollBar
                         Name="PART_HorizontalScrollBar"
+                        Opacity="0"
                         Orientation="Horizontal"
-                        VerticalAlignment="Bottom" />
+                        VerticalAlignment="Bottom">
+                        <ScrollBar.Transitions>
+                            <Transitions>
+                                <DoubleTransition Duration="0:0:0.16" Property="Opacity" />
+                            </Transitions>
+                        </ScrollBar.Transitions>
+                    </ScrollBar>
                     <ScrollBar
                         HorizontalAlignment="Right"
                         Name="PART_VerticalScrollBar"
-                        Orientation="Vertical" />
+                        Opacity="0"
+                        Orientation="Vertical">
+                        <ScrollBar.Transitions>
+                            <Transitions>
+                                <DoubleTransition Duration="0:0:0.16" Property="Opacity" />
+                            </Transitions>
+                        </ScrollBar.Transitions>
+                    </ScrollBar>
                 </Grid>
             </ControlTemplate>
         </Setter>
 
         <Style Selector="^:pointerover /template/ ScrollBar#PART_HorizontalScrollBar">
-            <Setter Property="Height" Value="6" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
 
         <Style Selector="^:pointerover /template/ ScrollBar#PART_VerticalScrollBar">
-            <Setter Property="Width" Value="6" />
+            <Setter Property="Opacity" Value="1" />
         </Style>
     </ControlTheme>
 

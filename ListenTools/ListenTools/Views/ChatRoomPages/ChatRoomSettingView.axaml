@@ -1,0 +1,212 @@
+<UserControl
+    Background="#100F1D"
+    mc:Ignorable="d"
+    x:Class="ListenTools.Views.ChatRoomPages.ChatRoomSettingView"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:ListenTools.Controls.Extends"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid RowDefinitions="*,Auto">
+        <Border Grid.Row="0" HorizontalAlignment="Right">
+            <StackPanel Margin="12">
+                <DockPanel LastChildFill="False">
+                    <TextBlock
+                        DockPanel.Dock="Left"
+                        FontFamily="{StaticResource HarmonyOsBoldFont}"
+                        FontSize="18"
+                        Foreground="#F9F9F9"
+                        Text="房间设置" />
+
+                    <!--  窗口关闭  -->
+                    <Button
+                        Background="Transparent"
+                        DockPanel.Dock="Right"
+                        Height="24"
+                        HorizontalAlignment="Right"
+                        Padding="6"
+                        Theme="{StaticResource IconPathButton}"
+                        VerticalAlignment="Top"
+                        Width="24"
+                        ext:ButtonExtend.IconPath="{StaticResource WindowCloseIcon}"
+                        ext:ElementExtend.PointOverBackground="{StaticResource PrimaryBrush70}"
+                        ext:ElementExtend.PointOverForeground="#FF6F74" />
+                </DockPanel>
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <Border
+                        ClipToBounds="True"
+                        CornerRadius="16"
+                        HorizontalAlignment="Left"
+                        Padding="0"
+                        VerticalAlignment="Top">
+                        <Image
+                            Height="64"
+                            Source="/Resources/Images/logo.png"
+                            Stretch="Fill"
+                            UseLayoutRounding="True"
+                            Width="64" />
+                    </Border>
+                    <Label
+                        Background="{StaticResource PrimaryColor}"
+                        Content="房间号：10010"
+                        CornerRadius="4"
+                        FontSize="14"
+                        FontWeight="Bold"
+                        Foreground="#FFFFFF"
+                        HorizontalAlignment="Center"
+                        HorizontalContentAlignment="Center"
+                        Margin="12,0,0,0"
+                        Padding="8,4"
+                        VerticalAlignment="Center"
+                        VerticalContentAlignment="Center" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="房间名称："
+                        VerticalAlignment="Center" />
+                    <TextBox
+                        Background="#2A2C30"
+                        BorderBrush="#2A2C30"
+                        Foreground="#F9F9F9"
+                        HorizontalAlignment="Left"
+                        PasswordChar="●"
+                        RevealPassword="True"
+                        Text=""
+                        TextInputOptions.ContentType="Password"
+                        Theme="{StaticResource DefaultTextBox}"
+                        Width="200" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="房间类型："
+                        VerticalAlignment="Center" />
+                    <ComboBox
+                        Background="#2A2C30"
+                        BorderThickness="0"
+                        Width="200">
+                        <ComboBoxItem Content="聊天室" />
+                        <ComboBoxItem Content="一起听" />
+                        <ComboBoxItem Content="放映室" />
+                        <ComboBoxItem Content="直播间" />
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="最大人数："
+                        VerticalAlignment="Center" />
+                    <TextBox
+                        Background="#2A2C30"
+                        BorderBrush="#2A2C30"
+                        Foreground="#F9F9F9"
+                        HorizontalAlignment="Left"
+                        Text=""
+                        TextInputOptions.ContentType="Number"
+                        Theme="{StaticResource DefaultTextBox}"
+                        Width="200" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="房间密码："
+                        VerticalAlignment="Center" />
+                    <TextBox
+                        Background="#2A2C30"
+                        BorderBrush="#2A2C30"
+                        Foreground="#F9F9F9"
+                        HorizontalAlignment="Left"
+                        PasswordChar="●"
+                        RevealPassword="True"
+                        Text=""
+                        TextInputOptions.ContentType="Password"
+                        Theme="{StaticResource DefaultTextBox}"
+                        Width="200" />
+
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="是否公开："
+                        VerticalAlignment="Center" />
+                    <ToggleSwitch />
+
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="直播地址："
+                        VerticalAlignment="Center" />
+                    <TextBox
+                        Background="#2A2C30"
+                        BorderBrush="#2A2C30"
+                        Foreground="#F9F9F9"
+                        HorizontalAlignment="Left"
+                        IsReadOnly="True"
+                        Text="rtmp://172.16.13.28/musicroom/live/10011"
+                        Theme="{StaticResource DefaultTextBox}"
+                        Width="200" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="投票切歌："
+                        VerticalAlignment="Center" />
+                    <ToggleSwitch IsVisible="True" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="投票占比："
+                        VerticalAlignment="Center" />
+                    <Slider
+                        Maximum="100"
+                        Minimum="10"
+                        Value="50"
+                        Width="200" />
+                </StackPanel>
+
+                <StackPanel Margin="0,12,0,0" Orientation="Horizontal">
+                    <TextBlock
+                        Foreground="#F9F9F9"
+                        Text="房间介绍："
+                        VerticalAlignment="Top" />
+                    <TextBox
+                        AcceptsReturn="True"
+                        Background="#2A2C30"
+                        BorderBrush="#2A2C30"
+                        Foreground="#F9F9F9"
+                        Height="120"
+                        TextWrapping="Wrap"
+                        Theme="{StaticResource DefaultTextBox}"
+                        VerticalContentAlignment="Top"
+                        Width="200" />
+                </StackPanel>
+            </StackPanel>
+        </Border>
+
+        <StackPanel
+            Grid.Row="1"
+            HorizontalAlignment="Right"
+            Margin="0,12,60,12"
+            Orientation="Horizontal">
+            <Button
+                Background="{DynamicResource PrimaryColor}"
+                Content="保存"
+                Foreground="#FEFEFE"
+                Height="32"
+                HorizontalContentAlignment="Center"
+                VerticalContentAlignment="Center"
+                Width="80" />
+        </StackPanel>
+    </Grid>
+</UserControl>
