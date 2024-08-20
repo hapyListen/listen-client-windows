@@ -46,7 +46,7 @@
 
 ## 关于第三方音乐接口
 - [MyFreeMp3](https://tool.liumingye.cn/music/#/artist/N1BG)
-- [TuneFree](https://pt.sayqz.com/#/)
+- [SPlayer](https://github.com/imsyy/SPlayer)
 
 
 
